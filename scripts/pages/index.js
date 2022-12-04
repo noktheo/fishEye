@@ -48,6 +48,31 @@ async function getData() {
     }
 
 
+    let arrayIdPhoto = [];
+    //array of id photographer
+    for (let i = 0; i < data.media.length; i++) {
+        let x = data.media[i].photographerId;
+        /*
+        if(x == x){
+            arrayIdPhoto.push(data.media[i].photographerId);
+        }
+        else{
+            console.log('error')
+        }
+        */
+    }
+    console.log(arrayIdPhoto );
+
+    //get img of one photographer with id
+    let idPhotog = 82;
+
+    for (let i = 0; i < data.media.length; i++) {
+        if(data.media[i].photographerId == idPhotog){
+            console.log(data.media[i].image + '  --------');
+        }
+    }
+
+
 
     //return data
     return {
