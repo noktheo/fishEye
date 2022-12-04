@@ -1,61 +1,95 @@
-async function getPhotographers() {
-    // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet, 
-    // mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
+async function getData() {
+    //create data array
+    let dataName = [];
+    let dataPortrait = [];
+    let dataPrice = [];
+    let dataCity = [];
 
 
-    /***load json photographer*/
-
-    fetch('../data/photographers.json')
-        .then((response) => response.json())
-        .then((json) => console.log(json));
-
-        console.log(json.name)
+    let arrayKey = [];
 
 
-    /*****test object*******/
-/*
-    var personne = {
-        nom: ['Jean', 'Martin'],
-        age: 32,
-        sexe: 'masculin',
-        interets: ['musique', 'skier'],
-        bio: function () {
-            alert(this.nom[0] + ' ' + this.nom[1] + ' a ' + this.age + ' ans. Il aime ' + this.interets[0] + ' et ' + this.interets[1] + '.');
-        },
-        salutation: function () {
-            alert('Bonjour ! Je suis ' + this.nom[0] + '.');
+    //GET JSON
+    const response = await fetch('../data/photographers.json', {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/JSON'
         }
+    });
+    const data = await response.json();
+
+    //key length
+    let keylength = Object.keys(data.photographers[0]).length;
+    //push key name on array
+    for (let i = 0; i < keylength; i++) {
+        arrayKey.push(Object.keys(data.photographers[0])[i]);
+    }
+
+    console.log(arrayKey);
+
+
+    //push data on array
+    for (let i = 0; i < data.photographers.length; i++) {
+
+        dataName.push(data.photographers[i].name);
+        dataPortrait.push(data.photographers[i].portrait);
+        dataPrice.push(data.photographers[i].price);
+        dataCity.push(data.photographers[i].city);
+
+        /*
+                for (let z = 0; z < arrayKey.length; z++) {
+                    let nameKeyTest = arrayKey[z];
+        
+                dataName.push(data.photographers[i].nameKeyTest);
+                console.log(data.photographers[i].nameKeyTest)
+                
+                }
+        */
+    }
+
+
+
+    //return data
+    return {
+        dataName: dataName,
+        dataPortrait: dataPortrait,
+        dataPrice: dataPrice,
+        dataCity: dataCity
     };
-
-    console.log(personne.bio());
-    console.log(personne.salutation());
-    */
+}
 
 
+async function getPhotographers() {
+    const data = await getData();
+    console.log(data['dataName'])
+    console.log(data['dataPortrait'])
+    console.log(data['dataPrice'])
 
-    let photographers = [
+    let photographersList = [];
+
+    //repack data on object
+    for (let x = 0; x < 6; x++) {
+        let photographers =
         {
-            "name": "Ma data test",
+            "name": data['dataName'][x],
             "id": 1,
-            "city": "Paris",
+            "city": data['dataCity'][x],
             "country": "France",
             "tagline": "Ceci est ma data test",
-            "price": 400,
-            "portrait": "account.png"
-        },
-        {
-            "name": "Autre data test",
-            "id": 2,
-            "city": "Londres",
-            "country": "UK",
-            "tagline": "Ceci est ma data test 2",
-            "price": 500,
-            "portrait": "account.png"
-        },
-    ]
-    // et bien retourner le tableau photographers seulement une fois récupéré
+            "price": data['dataPrice'][x],
+            "portrait": data['dataPortrait'][x]
+        }
+
+        //push on array
+        photographersList.push(photographers)
+        console.log(photographers)
+    }
+    console.log(photographersList);
+
+
+    //return data array of all photograpers
     return ({
-        photographers: [...photographers, ...photographers, ...photographers]
+        photographers: [...photographersList]
     })
 }
 
