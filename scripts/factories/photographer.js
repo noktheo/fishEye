@@ -4,23 +4,29 @@ function photographerFactory(data) {
     const picture = `assets/photographers/${portrait}`;
 
     function getUserCardDOM() {
+        /*box photograpghers*/
         const article = document.createElement( 'article' );
 
-
+        /*img*/
+        const boxImg = document.createElement( 'div' );
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
 
+        /*name*/
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
 
+        /*price*/
         const p = document.createElement( 'p' );
         p.textContent = price;
 
+        /*city*/
         const pCity = document.createElement( 'p' );
         pCity.textContent = city;
 
-       
-        article.appendChild(img);
+        /*write all balise on article -> box photographers*/
+        article.appendChild(boxImg);
+        boxImg.appendChild(img);
         article.appendChild(h2);
         article.appendChild(p);
         article.appendChild(pCity);

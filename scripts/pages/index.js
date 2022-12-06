@@ -5,11 +5,14 @@ async function getData() {
     let dataPrice = [];
     let dataCity = [];
 
-
+    /*array key name -> photographers (json) object*/
     let arrayKey = [];
 
+    /*array id photographers -> photographers (json)*/
+    let arrayIdPhoto = [];
 
-    //GET JSON
+
+    //get json
     const response = await fetch('../data/photographers.json', {
         method: 'GET',
         headers: {
@@ -48,18 +51,10 @@ async function getData() {
     }
 
 
-    let arrayIdPhoto = [];
-    //array of id photographer
-    for (let i = 0; i < data.media.length; i++) {
-        let x = data.media[i].photographerId;
-        /*
-        if(x == x){
-            arrayIdPhoto.push(data.media[i].photographerId);
-        }
-        else{
-            console.log('error')
-        }
-        */
+    
+    //get id photographer -> push array
+    for (let i = 0; i < data.photographers.length; i++) {
+        arrayIdPhoto.push(data.photographers[i].id);
     }
     console.log(arrayIdPhoto );
 
@@ -72,6 +67,10 @@ async function getData() {
         }
     }
 
+    /*
+    const articlesTest = document.querySelector('h2').textContent;
+    console.log(articlesTest);
+    */
 
 
     //return data
