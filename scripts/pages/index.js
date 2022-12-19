@@ -4,6 +4,7 @@ async function getData() {
     let dataPortrait = [];
     let dataPrice = [];
     let dataCity = [];
+    let dataId = [];
 
     /*array key name -> photographers (json) object*/
     let arrayKey = [];
@@ -38,6 +39,8 @@ async function getData() {
         dataPortrait.push(data.photographers[i].portrait);
         dataPrice.push(data.photographers[i].price);
         dataCity.push(data.photographers[i].city);
+        dataId.push(data.photographers[i].id);
+        
 
         /*
                 for (let z = 0; z < arrayKey.length; z++) {
@@ -78,7 +81,8 @@ async function getData() {
         dataName: dataName,
         dataPortrait: dataPortrait,
         dataPrice: dataPrice,
-        dataCity: dataCity
+        dataCity: dataCity,
+        dataId: dataId
     };
 }
 
@@ -93,10 +97,11 @@ async function getPhotographers() {
 
     //repack data on object
     for (let x = 0; x < 6; x++) {
+        console.log(data['dataId']);
         let photographers =
         {
             "name": data['dataName'][x],
-            "id": 1,
+            "id": data['dataId'][x],
             "city": data['dataCity'][x],
             "country": "France",
             "tagline": "Ceci est ma data test",
@@ -122,7 +127,7 @@ async function displayData(photographers) {
 
     photographers.forEach((photographer) => {
         const photographerModel = photographerFactory(photographer);
-        const userCardDOM = photographerModel.getUserCardDOM();
+        const userCardDOM = photographerModel.getUserCardDOM(photographer.id);
         photographersSection.appendChild(userCardDOM);
     });
 };

@@ -3,9 +3,14 @@ function photographerFactory(data) {
 
     const picture = `assets/photographers/${portrait}`;
 
-    function getUserCardDOM() {
+    function getUserCardDOM(id) {
         /*box photograpghers*/
         const article = document.createElement( 'article' );
+        article.addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.setItem('id', `${id}`);
+            window.location = window.location.origin + `/photographer.html?id=${id}`
+        })
 
         /*img*/
         const boxImg = document.createElement( 'div' );
