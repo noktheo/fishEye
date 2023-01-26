@@ -1,7 +1,7 @@
-// get id
+// get id photographer
 const idPhotographer = localStorage.getItem('id');
 
-
+//het json data
 async function getData() {
     //get json
     const response = await fetch('../data/photographers.json', {
@@ -15,13 +15,38 @@ async function getData() {
     return data;
 }
 
-//create photographer
+
+/************target******/
+
+//target avatar
+const target = document.querySelector('.photograph-header');
+
+// target img
+const targetimg = document.querySelector('.photograph-header');
+
+//target price
+const targetPrice = document.querySelector('.photograph-header');
+
+
+//photographer avatar
 async function Photographer(data, target) {
     for (let i = 0; i < data.photographers.length; i++) {
         idP = data.photographers[i].id;
 
+        /*
+        let nameAlone = data.photographers[i].name;
+        var splitsz = nameAlone.split(" ", 1);
+        console.log('nameAlone');
+        console.log(splitsz);
+        re = /[^.]/;
+        console.log(nameAlone.split(re));
+        console.log('------------');
+        */
+
+        console.log('yes media');
+
         if (idP == idPhotographer) {
-            const avatar = `assets/photographers/${data.photographers[i].portrait}`;
+            const avatar = `assets/photographers/photographers_id_photos/${data.photographers[i].portrait}`;
             newCreateElement('img', target, { src: avatar });
         }
         else {
@@ -30,7 +55,7 @@ async function Photographer(data, target) {
     }
 }
 
-//get picture of photographer id => json array media
+//get data media of photographer id
 async function dataAnexPhotographer(data, parent) {
     // let dataPhotographerImg = [];
 
@@ -38,23 +63,21 @@ async function dataAnexPhotographer(data, parent) {
         idP = data.media[x].photographerId;
 
         if (idP == idPhotographer) {
-            console.log('yes media');
-
             //img
             const get = data.media[x]
 
             //no img get -> get video
             let img;
-            if(get.image){
+            if (get.image) {
                 img = get.image;
             }
-            else{
+            else {
                 img = get.video;
             }
 
             const url = `assets/photographers/${img}`;
             newCreateElement('img', parent[0], { src: url });
-            
+
             //price
             newCreateElement('h3', parent[1], { textContent: get.price });
 
@@ -67,33 +90,24 @@ async function dataAnexPhotographer(data, parent) {
     }
 }
 
-// create element
+// create element with params (url, taget, etc)
 const newCreateElement = (element, parent, json) => {
     const balise = document.createElement(element);
-    // if (src) balise.setAttribute("src", src);
-    // if (alt) balise.setAttribute("alt", alt);
-    // if (textContent) balise.setAttribute("textContent", textContent);
-    Object.entries(json).forEach(([key,value]) => {
-        balise.setAttribute(key,value);
+
+    //get other params (src, textContent, etc)
+    //with this we can add param easly
+    Object.entries(json).forEach(([key, value]) => {
+        balise.setAttribute(key, value);
     });
     parent.appendChild(balise)
 }
 
-//create dom element
+//call function
 async function pageDomPhotographer() {
     const fetchData = await getData();
-
-    //target avatar
-    const target = document.querySelector('.photograph-header');
-
     await Photographer(fetchData, target);
-
-    // target img
-    const targetimg = document.querySelector('.photograph-header');
-
-    //target price
-    const targetPrice = document.querySelector('.photograph-header');
-
     await dataAnexPhotographer(fetchData, [targetimg, targetPrice]);
 }
 pageDomPhotographer();
+
+

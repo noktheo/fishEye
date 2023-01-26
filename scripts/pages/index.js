@@ -40,7 +40,7 @@ async function getData() {
         dataPrice.push(data.photographers[i].price);
         dataCity.push(data.photographers[i].city);
         dataId.push(data.photographers[i].id);
-        
+
 
         /*
                 for (let z = 0; z < arrayKey.length; z++) {
@@ -54,18 +54,18 @@ async function getData() {
     }
 
 
-    
+
     //get id photographer -> push array
     for (let i = 0; i < data.photographers.length; i++) {
         arrayIdPhoto.push(data.photographers[i].id);
     }
-    console.log(arrayIdPhoto );
+    console.log(arrayIdPhoto);
 
     //get img of one photographer with id
     let idPhotog = 82;
 
     for (let i = 0; i < data.media.length; i++) {
-        if(data.media[i].photographerId == idPhotog){
+        if (data.media[i].photographerId == idPhotog) {
             console.log(data.media[i].image + '  --------');
         }
     }
