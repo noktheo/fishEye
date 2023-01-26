@@ -17,7 +17,7 @@ async function getData() {
     });
     const data = await response.json();
 
-    return(data)
+    return data;
 }
 
  //get data photographer
@@ -70,12 +70,12 @@ async function getImgPhotographer(data) {
 
 //create dom element
 async function pageDomPhotographer() {
-    const fetchData = getData;
-    const data = await getdataPhtotographer(fetchData);
+    const fetchData = await getData();
+    const data = getdataPhtotographer(fetchData);
     console.log('data -----------');
     console.log(data);
 
-    const dataImg = await getImgPhotographer(fetchData);
+    const dataImg = getImgPhotographer(fetchData);
     console.log('img -----------');
     console.log(dataImg);
 
