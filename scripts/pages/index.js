@@ -97,7 +97,7 @@ async function getPhotographers() {
 
     //repack data on object
     for (let x = 0; x < 6; x++) {
-        console.log(data['dataId']);
+        
         let photographers =
         {
             "name": data['dataName'][x],
@@ -113,8 +113,6 @@ async function getPhotographers() {
         photographersList.push(photographers)
         console.log(photographers)
     }
-    console.log(photographersList);
-
 
     //return data array of all photograpers
     return ({
