@@ -19,13 +19,13 @@ async function getData() {
 /************target******/
 
 //target avatar
-const target = document.querySelector('.photograph-header');
+const target = document.querySelector('.collectionPhotographer');
 
 // target img
-const targetimg = document.querySelector('.photograph-header');
+const targetimg = document.querySelector('#boxImg');
 
 //target price
-const targetPrice = document.querySelector('.photograph-header');
+const targetPrice = document.querySelector('.collectionPhotographer');
 //number for get the good photographer name on dataAnexPhotographer function
 numberPhoto = [];
 
@@ -33,7 +33,6 @@ numberPhoto = [];
 async function Photographer(data, target) {
     for (let i = 0; i < data.photographers.length; i++) {
         idP = data.photographers[i].id;
-
 
         if (idP == idPhotographer) {
             const avatar = `assets/photographers/${data.photographers[i].portrait}`;
@@ -66,17 +65,26 @@ async function dataAnexPhotographer(data, parent) {
             // \s.*$ delete all after ' '   g replace '-' by its ' '
             let nameAlone = nameAll.replace(/\s.*$/, "").replace(/-/g, " ");
 
-            //no img get -> get video
+            //box content : img or video + name + follow
+            let newP = document.createElement('div');
+            newP.setAttribute('id', 'boxImg');
+            newP.textContent = 'bonjour';
+
+            let targetDic = document.querySelector('.collectionPhotographer')
+            targetDic.appendChild(newP)
+
+            //no img -> get video
             let img;
             if (get.image) {
                 img = get.image;
+                const url = `assets/photographers/${nameAlone}/${img}`;
+                newCreateElement('img', parent[0], { src: url });
             }
             else {
                 img = get.video;
+                const url = `assets/photographers/${nameAlone}/${img}`;
+                newCreateElement('video', parent[0], { src: url });
             }
-
-            const url = `assets/photographers/${nameAlone}/${img}`;
-            newCreateElement('img', parent[0], { src: url });
 
             //price
             newCreateElement('h3', parent[1], { textContent: get.price });
@@ -90,7 +98,7 @@ async function dataAnexPhotographer(data, parent) {
     }
 }
 
-// create element with params (url, taget, etc)
+// create element with params (url, target, etc)
 const newCreateElement = (element, parent, json) => {
     const balise = document.createElement(element);
 

@@ -1,43 +1,64 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
-  </head>
-  <body>
 
-    <header>
-      <img src="assets/logotype/logo.png" class="logo" />
-    </header>
+<head>
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <title>Fisheye - photographe </title>
+</head>
 
-    <main id="main">
+<body>
 
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+  <header>
+    <img src="assets/logotype/logo.png" class="logo" />
+  </header>
+
+  <main id="main">
+    <section class="photographe">
+      <h1 id="namePhotographer"></h1>
+      <div>
+        <p id="locationPhotographer"></p>
+        <p id="descriptionPhotographer"></p>
+      </div>
+      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <img id="avatarPhotographer"></img>
+    </section>
+
+    <section class="collectionPhotographer">
+      <div class="collectionPhotographerheader">
+        <p>Trier par</p>
+        <ul class="filterImg">
+          <li>Populariter</li>
+          <li>Date</li>
+          <li>Titre</li>
+        </ul>
       </div>
 
-    </main>
+    </section>
 
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
+  </main>
 
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
-    <script src="/scripts/pages/write_photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
-  </body>
+  <div id="contact_modal">
+    <div class="modal">
+      <header>
+        <h2>Contactez-moi</h2>
+        <img src="assets/icons/close.svg" onclick="closeModal()" />
+      </header>
+
+      <form>
+        <div>
+          <label>Prénom</label>
+          <input />
+        </div>
+        <button class="contact_button">Envoyer</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/scripts/pages/write_photographer.js"></script>
+  <script src="/scripts/utils/contactForm.js"></script>
+</body>
+
 </html>

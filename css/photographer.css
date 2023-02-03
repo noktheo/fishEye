@@ -1,16 +1,39 @@
-#contact_modal {
-    display: none;
+
+body{
+    padding:0 50px;
 }
 
-.photograph-header {
-    background-color: #FAFAFA;
+/**PHOTOGRAPH********************************/
+
+.photographe{
+background-color: rgb(234, 234, 234);
+}
+
+/**COLLECTION******************************/
+
+.collectionPhotographer {
+
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.photograph-header img{
-    width:27%;
-    height: auto;
+.collectionPhotographer img, video{
+    width:25%;
+
+}
+
+.collectionPhotographerheader{
+    width: 100%;
+}
+
+
+
+/****CONTACT**MODAL***************************/
+
+#contact_modal {
+    display: none;
 }
 
 .contact_button {
@@ -79,3 +102,5 @@ form input {
     border: none;
     border-radius: 5px;
 }
+
+/*****************************/
