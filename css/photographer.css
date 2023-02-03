@@ -19,9 +19,13 @@ background-color: rgb(234, 234, 234);
     flex-wrap: wrap;
 }
 
-.collectionPhotographer img, video{
+.boxImg{
     width:25%;
 
+}
+
+.boxImg img{
+    width:100%;
 }
 
 .collectionPhotographerheader{

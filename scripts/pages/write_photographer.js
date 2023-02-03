@@ -19,10 +19,10 @@ async function getData() {
 /************target******/
 
 //target avatar
-const target = document.querySelector('.collectionPhotographer');
+const target = document.querySelector('.photographe');
 
 // target img
-const targetimg = document.querySelector('#boxImg');
+const targetimg = document.querySelector('.collectionPhotographer');
 
 //target price
 const targetPrice = document.querySelector('.collectionPhotographer');
@@ -44,7 +44,6 @@ async function Photographer(data, target) {
             console.log('bad photographer id');
         }
     }
-
 }
 
 
@@ -67,30 +66,30 @@ async function dataAnexPhotographer(data, parent) {
 
             //box content : img or video + name + follow
             let newP = document.createElement('div');
-            newP.setAttribute('id', 'boxImg');
+            newP.setAttribute('class', 'boxImg');
             newP.textContent = 'bonjour';
 
-            let targetDic = document.querySelector('.collectionPhotographer')
-            targetDic.appendChild(newP)
+            let targetDic = document.querySelector('.collectionPhotographer');
+            targetDic.appendChild(newP);
 
             //no img -> get video
             let img;
             if (get.image) {
                 img = get.image;
                 const url = `assets/photographers/${nameAlone}/${img}`;
-                newCreateElement('img', parent[0], { src: url });
+                newCreateElement('img', newP, { src: url });
             }
             else {
                 img = get.video;
                 const url = `assets/photographers/${nameAlone}/${img}`;
-                newCreateElement('video', parent[0], { src: url });
+                newCreateElement('video', newP, { src: url });
             }
 
             //price
-            newCreateElement('h3', parent[1], { textContent: get.price });
+            //newCreateElement('h3', parent[1], { textContent: get.price });
 
             //title
-            newCreateElement('h1', parent[0], { textContent: get.title, id: "machin" });
+            newCreateElement('h1', newP, { textContent: get.title, id: "machin" });
         }
         else {
             console.log('nn media');
