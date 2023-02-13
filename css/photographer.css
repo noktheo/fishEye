@@ -19,17 +19,22 @@ background-color: rgb(234, 234, 234);
     flex-wrap: wrap;
 }
 
-.boxImg{
+.ParentBoxMedia{
     width:25%;
-
-}
-
-.boxImg img{
-    width:100%;
 }
 
 .collectionPhotographerheader{
     width: 100%;
+}
+
+.contentMedia{
+    width: 100%;
+    height:150px;
+    overflow: hidden;
+}
+
+.contentMedia img, video{
+    width:180%;
 }
 
 
@@ -38,6 +43,7 @@ background-color: rgb(234, 234, 234);
 
 #contact_modal {
     display: none;
+    position: absolute;
 }
 
 .contact_button {
@@ -107,4 +113,13 @@ form input {
     border-radius: 5px;
 }
 
-/*****************************/
+/****FOLLOWER*************************/
+.compteurFollower{
+    position: fixed;
+    border-radius: 5px 5px 0 0;
+    height:50px;
+    min-width:250px;
+    background-color: red;
+    bottom: 0;
+    right: 50px;
+}

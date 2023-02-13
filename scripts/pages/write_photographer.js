@@ -26,6 +26,10 @@ const targetimg = document.querySelector('.collectionPhotographer');
 
 //target price
 const targetPrice = document.querySelector('.collectionPhotographer');
+
+//target follower
+const targetFollower = document.querySelector('.compteurFollower');
+
 //number for get the good photographer name on dataAnexPhotographer function
 numberPhoto = [];
 
@@ -46,14 +50,20 @@ async function Photographer(data, target) {
     }
 }
 
+//compteur
+let ab = 0;
 
+let arrayImgPhoto = []
 
 //get data media of photographer id
 async function dataAnexPhotographer(data, parent) {
     // let dataPhotographerImg = [];
 
+    //number of total of likes
+    let totalLikes = 0;
     for (let x = 0; x < data.media.length; x++) {
         idP = data.media[x].photographerId;
+        
 
         if (idP == idPhotographer) {
             //img
@@ -65,36 +75,55 @@ async function dataAnexPhotographer(data, parent) {
             let nameAlone = nameAll.replace(/\s.*$/, "").replace(/-/g, " ");
 
             //box content : img or video + name + follow
-            let newP = document.createElement('div');
-            newP.setAttribute('class', 'boxImg');
-            newP.textContent = 'bonjour';
+            let ParentBoxMedia = document.createElement('article');
+            ParentBoxMedia.setAttribute('class', 'ParentBoxMedia');
 
-            let targetDic = document.querySelector('.collectionPhotographer');
-            targetDic.appendChild(newP);
+            let target002 = document.querySelector('.collectionPhotographer');
+            target002.appendChild(ParentBoxMedia);
+
+            //box content : img or video
+            let contentMedia = document.createElement('div');
+            contentMedia.setAttribute('class', 'contentMedia');
+            contentMedia.addEventListener('click', () => { console.log(get.image) })
+
+            let target003 = document.getElementsByClassName("ParentBoxMedia")[ab];
+            console.log(document.getElementsByClassName("ParentBoxMedia")[ab]);
+            target003.appendChild(contentMedia);
+            ab++
+
+            //like + likes, etc...
+            totalLikes += get.likes;
+
 
             //no img -> get video
             let img;
             if (get.image) {
                 img = get.image;
                 const url = `assets/photographers/${nameAlone}/${img}`;
-                newCreateElement('img', newP, { src: url });
+                newCreateElement('img', contentMedia, { src: url, class: "img" });
+                arrayImgPhoto.push(data.media[x].image);
             }
             else {
                 img = get.video;
                 const url = `assets/photographers/${nameAlone}/${img}`;
-                newCreateElement('video', newP, { src: url });
+                newCreateElement('video', contentMedia, { src: url });
+                arrayImgPhoto.push(data.media[x].video);
             }
 
-            //price
-            //newCreateElement('h3', parent[1], { textContent: get.price });
+
+            newCreateElement('h3', ParentBoxMedia, { textContent: get.likes });
 
             //title
-            newCreateElement('h1', newP, { textContent: get.title, id: "machin" });
+            newCreateElement('p', ParentBoxMedia, { textContent: get.title, id: "titleMedia" });
         }
         else {
             console.log('nn media');
         }
     }
+
+
+    //creat DOM total like
+    newCreateElement('p', parent[2], { textContent: totalLikes, class: 'totalFollower' });
 }
 
 // create element with params (url, target, etc)
@@ -104,7 +133,13 @@ const newCreateElement = (element, parent, json) => {
     //get other params (src, textContent, etc)
     //with this we can add param easly
     Object.entries(json).forEach(([key, value]) => {
-        balise.setAttribute(key, value);
+        if (key === 'textContent') {
+            balise.textContent = value;
+        }
+        else {
+            balise.setAttribute(key, value);
+        }
+
     });
     parent.appendChild(balise)
 }
@@ -113,8 +148,21 @@ const newCreateElement = (element, parent, json) => {
 async function pageDomPhotographer() {
     const fetchData = await getData();
     await Photographer(fetchData, target);
-    await dataAnexPhotographer(fetchData, [targetimg, targetPrice]);
+    await dataAnexPhotographer(fetchData, [targetimg, targetPrice, targetFollower]);
 }
 pageDomPhotographer();
 
+console.log(arrayImgPhoto);
+
+//event click img
+const lightboxTrigger = document.querySelectorAll('.img');
+const lightbox = document.querySelector('#lightbox');
+
+lightboxTrigger.addEventListener('click', function () {
+    const imgSrc = this.getAttribute('src');
+    const imgTag = '<img src="' + imgSrc + '">';
+
+    lightbox.innerHTML = imgTag;
+    lightbox.style.display = 'block';
+});
 
