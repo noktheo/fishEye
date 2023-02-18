@@ -30,6 +30,9 @@ const targetPrice = document.querySelector('.collectionPhotographer');
 //target follower
 const targetFollower = document.querySelector('.compteurFollower');
 
+//target lightbox
+const targetLightBox = document.querySelector('body');
+
 //number for get the good photographer name on dataAnexPhotographer function
 numberPhoto = [];
 
@@ -57,13 +60,14 @@ let arrayImgPhoto = []
 
 //get data media of photographer id
 async function dataAnexPhotographer(data, parent) {
-    // let dataPhotographerImg = [];
+
+
 
     //number of total of likes
     let totalLikes = 0;
     for (let x = 0; x < data.media.length; x++) {
         idP = data.media[x].photographerId;
-        
+
 
         if (idP == idPhotographer) {
             //img
@@ -84,7 +88,7 @@ async function dataAnexPhotographer(data, parent) {
             //box content : img or video
             let contentMedia = document.createElement('div');
             contentMedia.setAttribute('class', 'contentMedia');
-            contentMedia.addEventListener('click', () => { console.log(get.image) })
+            contentMedia.addEventListener('click', openLightbox)
 
             let target003 = document.getElementsByClassName("ParentBoxMedia")[ab];
             console.log(document.getElementsByClassName("ParentBoxMedia")[ab]);
@@ -108,6 +112,28 @@ async function dataAnexPhotographer(data, parent) {
                 const url = `assets/photographers/${nameAlone}/${img}`;
                 newCreateElement('video', contentMedia, { src: url });
                 arrayImgPhoto.push(data.media[x].video);
+            }
+
+            //open lightbox
+            function openLightbox() {
+                console.log("oui oui lightbox");
+
+                //create box content
+                newCreateElement('section', parent[3], { class: "boxLightBox" });
+                
+                let contentMediaLightBox = document.createElement('article');
+                contentMediaLightBox.className = "contentMediaLigtBox";
+                contentMediaLightBox.addEventListener = ('click', () => { console.log("dadaaaaaaa") } )
+
+                let targetContentMediaLightBox = document.querySelector(".boxLightBox");
+                targetContentMediaLightBox.appendChild(contentMediaLightBox);
+
+                //create img / video
+                let mediaLightBox = document.createElement('img');
+                mediaLightBox.src = `assets/photographers/${nameAlone}/${data.media[x].image}`;
+                
+                let targetMediaLightBox = document.querySelector(".contentMediaLigtBox");
+                targetMediaLightBox.appendChild(mediaLightBox);
             }
 
 
@@ -148,7 +174,7 @@ const newCreateElement = (element, parent, json) => {
 async function pageDomPhotographer() {
     const fetchData = await getData();
     await Photographer(fetchData, target);
-    await dataAnexPhotographer(fetchData, [targetimg, targetPrice, targetFollower]);
+    await dataAnexPhotographer(fetchData, [targetimg, targetPrice, targetFollower, targetLightBox]);
 }
 pageDomPhotographer();
 
