@@ -118,9 +118,10 @@ async function dataAnexPhotographer(data, parent) {
             function openLightbox() {
                 console.log("oui oui lightbox");
 
-                //create box content
+                //create box 
                 newCreateElement('section', parent[3], { class: "boxLightBox" });
                 
+                 //create box content media
                 let contentMediaLightBox = document.createElement('article');
                 contentMediaLightBox.className = "contentMediaLigtBox";
                 contentMediaLightBox.addEventListener = ('click', () => { console.log("dadaaaaaaa") } )
@@ -134,6 +135,10 @@ async function dataAnexPhotographer(data, parent) {
                 
                 let targetMediaLightBox = document.querySelector(".contentMediaLigtBox");
                 targetMediaLightBox.appendChild(mediaLightBox);
+            }
+
+            function closeLightbox() {
+
             }
 
 

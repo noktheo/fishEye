@@ -3,11 +3,7 @@ let formLogin = document.getElementById('FormLogin');
 let userName = document.getElementById('userName');
 let lastName = document.getElementById('lastName');
 let email = document.getElementById('mail');
-//let date = document.getElementById('date');
-//let numberT = document.getElementById('numberT');
-//let condition = document.getElementById('condition');
-//let event0 = document.getElementById('event');
-//let tournoi00 = formLogin.elements['Tournoi'];
+let comment = document.getElementById('comment');
 
 
 const nomtableau = new Array();
@@ -36,13 +32,7 @@ function form_verify() {
     const userValue = userName.value.trim();
     const lastValue = lastName.value.trim();
     const emailValue = email.value.trim();
-    /*const tournoiValue = numberT.value;
-    const dateValue = date.value;
-    const challenge = tournoi00.value;
-    const conditionValue = condition.checked;
-    const eventValue = event0.checked;
-
-    console.log(conditionValue);*/
+    const commentValue = comment.value.trim();
 
     // Regexp
     const accentedCharacters = "àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ";
@@ -103,62 +93,17 @@ function form_verify() {
         let value = emailValue;
         setSuccess(email, value, y)
     }
-/*
-    //date verify
-    if (dateValue === '') {
-        let message = 'Champ vide';
-        setError(date, message);
-    }
-    else {
-        y = 3;
-        let value = dateValue;
-        setSuccess(date, value, y)
-    }
 
-    //number tournoi verify
-    let numberTLenght = tournoiValue.length;
-    if (numberTLenght >= 4) {
-        let message = "abuse pas mec"
-        setError(numberT, message);
+    //comment verify
+    if (commentValue === "") {
+        let message = "comment ne peut pas être vide";
+        setError(comment, message);
     }
-    else {
-        y = 4;
-        let value = tournoiValue;
-        setSuccess(numberT, value, y)
+    else{
+        y = 3
+        let value = commentValue;
+        setSuccess(comment, value, y);
     }
-
-    //input radio
-    if (challenge !== null) {
-        y = 5;
-        let value = challenge;
-        nomtableau[y] = value;
-    }
-
-    //condition verify
-    if (conditionValue == false) {
-        let message = "abuse pas mec"
-        setError(condition, message);
-        delete nomtableau[6];
-
-    }
-    else {
-        y = 6;
-        let value = conditionValue;
-        setSuccess(condition, value, y)
-    }
-
-    //condition event
-    if (eventValue == false) {
-        let message = " "
-        setError(event0, message);
-        delete nomtableau[7];
-    }
-    else {
-        y = 7;
-        let value = eventValue;
-        setSuccess(event0, value, y)
-    }
-    */
 }
 
 
