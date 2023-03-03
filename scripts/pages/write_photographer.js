@@ -188,8 +188,11 @@ async function dataAnexPhotographer(data, parent) {
 
 
     /*******************ARRAY LIKE****************************/
+    let eventLike = "likeAdd";
+
+    /*
     //get total likes
-    function arraylikes() {
+    function arraylikes(addLike) {
         //get array of likes
         const arrayLikes = allDataPhoto.map(item => item.likes);
 
@@ -199,9 +202,25 @@ async function dataAnexPhotographer(data, parent) {
             totalLike = totalLike + arrayLikes[i];
         }
 
+        //event click +1 / -1
+        if (addLike == 'likeMore') {
+            if (eventLike === "likeAdd") {
+                eventLike = "likeDel";
+                totalLike = totalLike += 1;
+                console.log("like + 1");
+                console.log(totalLike)
+            }
+            else {
+                eventLike = "likeAdd";
+                totalLike = totalLike -= 1;
+                console.log("like - 1");
+                console.log(totalLike)
+            }
+        }
+
         return totalLike;
     }
-
+    */
 
 
     /*******************to DOM****************************/
@@ -260,8 +279,25 @@ async function dataAnexPhotographer(data, parent) {
             //total likes
             newCreateElement('h3', ParentBoxMedia, { textContent: getData.likes, id: "totalLikes" });
 
+
+            let iconLikes = document.createElement('div');
+            const likesTotal = ParentBoxMedia.querySelector('#totalLikes');
+
+            const accountTotal = ParentBoxMedia.querySelector('.totalFollower');
+
+
+            iconLikes.setAttribute('class', 'iconLikes');
+            iconLikes.addEventListener("click", function () {
+                const y = parseInt(accountTotal.textContent) + 1;
+                const r = parseInt(likesTotal.textContent) + 1;
+                likesTotal.innerHTML = r;
+                accountTotal.innerHTML = y;
+                arraylikes('likeMore');
+            });
+            target003.appendChild(iconLikes);
+
             // icon likes
-            newCreateElement('div', ParentBoxMedia, { class: "iconLikes" });
+            //newCreateElement('div', ParentBoxMedia, { addEventListenerLikes: "like1", class: "iconLikes" });
 
             //title
             newCreateElement('p', ParentBoxMedia, { textContent: getData.title, id: "titleMedia" });
@@ -285,9 +321,9 @@ const newCreateElement = (element, parent, json) => {
         if (key === 'textContent') {
             balise.textContent = value;
         }
-        else if( key === 'addEventListenerLikes'){
-            balise.addEventListenerv("click", function () {
-                value();
+        else if (key === 'addEventListenerLikes') {
+            balise.addEventListener("click", function () {
+                arraylikes(value);
             });
         }
         else {
