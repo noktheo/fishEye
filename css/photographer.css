@@ -146,3 +146,15 @@ form label {
 .boxLightBox article img{
     width: 150%;
 }
+
+/****button next / return*******/
+
+.arrow, .arrowReturn{
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+}
+
+.arrowReturn{
+    background-color: red;
+}
