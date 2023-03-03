@@ -110,6 +110,17 @@ form label {
     font-size: 36px;
 }
 
+/****ICON LIKES*************************/
+.iconLikes{
+    width:15px;
+    height:15px;
+    background-color: black;
+    border-radius: 5px;
+}
+
+.iconLikes:hover{
+    background-color: red;
+}
 
 
 /****FOLLOWER*************************/

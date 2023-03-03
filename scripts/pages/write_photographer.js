@@ -52,8 +52,6 @@ async function Photographer(data, target) {
     }
 }
 
-//compteur
-let ab = 0;
 
 //array 1 get data
 let allDataPhoto = [];
@@ -65,8 +63,6 @@ async function dataAnexPhotographer(data, parent) {
 
     console.log('allDataPhoto');
     console.log(allDataPhoto);
-
-    let totalLikes = 0;
 
     for (let x = 0; x < data.media.length; x++) {
         idP = data.media[x].photographerId;
@@ -160,89 +156,122 @@ async function dataAnexPhotographer(data, parent) {
         }
     }
 
-    //event button sort
-    //date
+    /*******************EVENT****************************/
+    //date sort
     const EventSortDate = document.querySelector("#filterDate");
     EventSortDate.addEventListener("click", function () {
+        deleteData();
         sortArray('date');
-        
+        writeArray(allDataFilter);
         console.log(allDataFilter);
     });
 
-    // likes
+    // likes sort
     const EventSortLikes = document.querySelector("#filterLikes");
     EventSortLikes.addEventListener("click", function () {
+        deleteData();
         sortArray('likes');
+        writeArray(allDataFilter);
         console.log(allDataFilter);
     });
 
-    // title
+    // title sort
     const EventSortTitle = document.querySelector("#filterTitle");
     EventSortTitle.addEventListener("click", function () {
+        deleteData();
         sortArray('title');
-
+        writeArray(allDataFilter);
         console.log(allDataFilter);
     });
 
-    /*******************to DOM****************************/
-    for (let i = 0; i < allDataFilter.length; i++) {
+    //add like
 
-        //get name generate by regexp
-        let nameAll = data.photographers[numberPhoto].name;
-        // \s.*$ delete all after ' '   g replace '-' by its ' '
-        let nameAlone = nameAll.replace(/\s.*$/, "").replace(/-/g, " ");
 
-        const get = data.media[x]
+    /*******************ARRAY LIKE****************************/
+    //get total likes
+    function arraylikes() {
+        //get array of likes
+        const arrayLikes = allDataPhoto.map(item => item.likes);
 
-        //no img -> get video
-        let img;
-        if (get.image) {
-            img = get.image;
-            const url = `assets/photographers/${nameAlone}/${img}`;
-            newCreateElement('img', contentMedia, { src: url, class: "img" });
+        let totalLike = 0;
+        //make just one number = total likes
+        for (let i = 0; i < arrayLikes.length; i++) {
+            totalLike = totalLike + arrayLikes[i];
         }
-        else {
-            img = get.video;
-            const url = `assets/photographers/${nameAlone}/${img}`;
-            newCreateElement('video', contentMedia, { src: url });
+
+        return totalLike;
+    }
+
+
+
+    /*******************to DOM****************************/
+    function deleteData() {
+        if (Array.isArray(allDataFilter)) {
+            allDataFilter.splice(0, allDataFilter.length);
+            const parentBoxes = document.querySelectorAll('.ParentBoxMedia');
+
+            parentBoxes.forEach(box => {
+                box.remove();
+            });
+
+            console.log("allDataFilter is array")
+        } else {
+            console.error("allDataFilter is not an array");
+        }
+    }
+
+    function writeArray(allDataFilter) {
+        for (let i = 0; i < allDataFilter.length; i++) {
+            const getData = allDataFilter[i];
+            //get name generate by regexp
+            let nameAll = data.photographers[numberPhoto].name;
+            // \s.*$ delete all after ' '   g replace '-' by its ' '
+            let nameAlone = nameAll.replace(/\s.*$/, "").replace(/-/g, " ");
+
+            //box content : img or video + name + follow
+            let ParentBoxMedia = document.createElement('article');
+            ParentBoxMedia.setAttribute('class', 'ParentBoxMedia');
+
+            let target002 = document.querySelector('.collectionPhotographer');
+            target002.appendChild(ParentBoxMedia);
+
+            //box content : img or video
+            let contentMedia = document.createElement('div');
+            contentMedia.setAttribute('class', 'contentMedia');
+            contentMedia.addEventListener('click', () => { console.log(getData.image) })
+
+            let target003 = document.getElementsByClassName("ParentBoxMedia")[i];
+            target003.appendChild(contentMedia);
+
+            //no img -> get video
+
+            let img;
+            if (getData.image) {
+                img = getData.image;
+                const url = `assets/photographers/${nameAlone}/${img}`;
+                newCreateElement('img', contentMedia, { src: url, class: "img" });
+            }
+            else {
+                img = getData.video;
+                const url = `assets/photographers/${nameAlone}/${img}`;
+                newCreateElement('video', contentMedia, { src: url });
+            }
+
+            //total likes
+            newCreateElement('h3', ParentBoxMedia, { textContent: getData.likes, id: "totalLikes" });
+
+            // icon likes
+            newCreateElement('div', ParentBoxMedia, { class: "iconLikes" });
+
+            //title
+            newCreateElement('p', ParentBoxMedia, { textContent: getData.title, id: "titleMedia" });
         }
     }
 
 
-    //img
-
-
-
-    //box content : img or video + name + follow
-    let ParentBoxMedia = document.createElement('article');
-    ParentBoxMedia.setAttribute('class', 'ParentBoxMedia');
-
-    let target002 = document.querySelector('.collectionPhotographer');
-    target002.appendChild(ParentBoxMedia);
-
-    //box content : img or video
-    let contentMedia = document.createElement('div');
-    contentMedia.setAttribute('class', 'contentMedia');
-    contentMedia.addEventListener('click', () => { console.log(get.image) })
-
-    let target003 = document.getElementsByClassName("ParentBoxMedia")[ab];
-    //console.log(document.getElementsByClassName("ParentBoxMedia")[ab]);
-    target003.appendChild(contentMedia);
-    ab++
-
-    //like + likes, etc...
-    //totalLikes += get.likes;
-
-
-
-
-    newCreateElement('h3', ParentBoxMedia, { textContent: get.likes });
-
-    //title
-    newCreateElement('p', ParentBoxMedia, { textContent: get.title, id: "titleMedia" });
 
     //creat DOM total like
-    newCreateElement('p', parent[2], { textContent: totalLikes, class: 'totalFollower' });
+    newCreateElement('p', parent[2], { textContent: arraylikes(), class: 'totalFollower' });
 
 }
 
@@ -255,6 +284,11 @@ const newCreateElement = (element, parent, json) => {
     Object.entries(json).forEach(([key, value]) => {
         if (key === 'textContent') {
             balise.textContent = value;
+        }
+        else if( key === 'addEventListenerLikes'){
+            balise.addEventListenerv("click", function () {
+                value();
+            });
         }
         else {
             balise.setAttribute(key, value);
