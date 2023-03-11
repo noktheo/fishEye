@@ -190,37 +190,19 @@ async function dataAnexPhotographer(data, parent) {
     /*******************ARRAY LIKE****************************/
     let eventLike = "likeAdd";
 
-    /*
+    let totalLike = 0;
     //get total likes
-    function arraylikes(addLike) {
+    function arraylikes() {
         //get array of likes
         const arrayLikes = allDataPhoto.map(item => item.likes);
 
-        let totalLike = 0;
         //make just one number = total likes
         for (let i = 0; i < arrayLikes.length; i++) {
             totalLike = totalLike + arrayLikes[i];
         }
-
-        //event click +1 / -1
-        if (addLike == 'likeMore') {
-            if (eventLike === "likeAdd") {
-                eventLike = "likeDel";
-                totalLike = totalLike += 1;
-                console.log("like + 1");
-                console.log(totalLike)
-            }
-            else {
-                eventLike = "likeAdd";
-                totalLike = totalLike -= 1;
-                console.log("like - 1");
-                console.log(totalLike)
-            }
-        }
-
         return totalLike;
     }
-    */
+
 
 
     /*******************to DOM****************************/
@@ -280,19 +262,23 @@ async function dataAnexPhotographer(data, parent) {
             newCreateElement('h3', ParentBoxMedia, { textContent: getData.likes, id: "totalLikes" });
 
 
+
             let iconLikes = document.createElement('div');
             const likesTotal = ParentBoxMedia.querySelector('#totalLikes');
 
             const accountTotal = ParentBoxMedia.querySelector('.totalFollower');
 
-
             iconLikes.setAttribute('class', 'iconLikes');
+
             iconLikes.addEventListener("click", function () {
+                console.log(accountTotal)
                 const y = parseInt(accountTotal.textContent) + 1;
+                accountTotal.innerHTML = y;
+
+
                 const r = parseInt(likesTotal.textContent) + 1;
                 likesTotal.innerHTML = r;
-                accountTotal.innerHTML = y;
-                arraylikes('likeMore');
+                //accountTotal.innerHTML = y;
             });
             target003.appendChild(iconLikes);
 
@@ -304,10 +290,10 @@ async function dataAnexPhotographer(data, parent) {
         }
     }
 
-
-
     //creat DOM total like
-    newCreateElement('p', parent[2], { textContent: arraylikes(), class: 'totalFollower' });
+    newCreateElement('p', parent[2], { textContent: arraylikes(totalLike), class: 'totalFollower' });
+
+
 
 }
 
