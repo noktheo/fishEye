@@ -1,4 +1,4 @@
-/************target******/
+/************target***********/
 //target avatar
 const target = document.querySelector('.photographe');
 
@@ -26,9 +26,13 @@ let sortOrderTitle = "ascTitle";
 //array 1 get data
 let allDataPhoto = [];
 
+//array of data filter
+let allDataFilter = "";
+
 // get id photographer
 const idPhotographer = localStorage.getItem('id');
 
+/*******************get data****************************/
 //get json data
 async function getData() {
     //get json
@@ -66,7 +70,7 @@ async function dataAnexPhotographer(data) {
     }
 }
 
-
+/*******************function write element to DOM****************************/
 // create element with params (url, target, etc)
 const newCreateElement = (element, parent, json) => {
     const balise = document.createElement(element);
@@ -91,35 +95,7 @@ const newCreateElement = (element, parent, json) => {
     console.log(parent)
 }
 
-
-
-//photographer img avatar header
-async function Photographer(data, target) {
-    for (let i = 0; i < data.photographers.length; i++) {
-        idP = data.photographers[i].id;
-
-        if (idP == idPhotographer) {
-            const avatar = `assets/photographers/${data.photographers[i].portrait}`;
-            newCreateElement('img', target, { src: avatar });
-            numberPhoto.push(i);
-        }
-        else {
-            console.log('bad photographer id');
-        }
-    }
-}
-
-
-
-
-
-
-
-//let arrayImgPhoto = []
-
-
-let allDataFilter = "";
-
+/*******************filter data****************************/
 //clone array 1 and sort by .... to array 2
 function sortArray(typeSort) {
     //clone
@@ -243,6 +219,24 @@ function arraylikes() {
 }
 
 /*******************to DOM****************************/
+
+//write to dom header
+//photographer img avatar header
+async function Photographer(data, target) {
+    for (let i = 0; i < data.photographers.length; i++) {
+        idP = data.photographers[i].id;
+
+        if (idP == idPhotographer) {
+            const avatar = `assets/photographers/${data.photographers[i].portrait}`;
+            newCreateElement('img', target, { src: avatar });
+            numberPhoto.push(i);
+        }
+        else {
+            console.log('bad photographer id');
+        }
+    }
+}
+
 //delete all Data picture
 function deleteData() {
     console.log('++++++++++++++allDataFilter++++++++++');
