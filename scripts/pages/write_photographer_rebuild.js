@@ -1,3 +1,8 @@
+/************import function***********/
+
+//function write Element on DOM
+import { newCreateElement } from '../utils/createElement.js';
+
 /************target***********/
 //target avatar
 const target = document.querySelector('.photographe');
@@ -12,11 +17,15 @@ const targetPrice = document.querySelector('.collectionPhotographer');
 const targetFollower = document.querySelector('.compteurFollower');
 
 //target lightbox
-const targetLightBox = document.querySelector('body');
+const headerBoxInfoP = document.querySelector('#headerInfoP');
 
+//target lightbox
+let targetBoxMediaInfo = document.querySelector('.boxMediaInfo');
+
+/************value***********/
 
 //number for get the good photographer name on dataAnexPhotographer function
-numberPhoto = [];
+let numberPhoto = [];
 
 //variable event
 let sortOrderDate = "ascDate";
@@ -31,6 +40,9 @@ let allDataFilter = "";
 
 // get id photographer
 const idPhotographer = localStorage.getItem('id');
+
+// id photographer
+let idP = '';
 
 /*******************get data****************************/
 //get json data
@@ -68,31 +80,6 @@ async function dataAnexPhotographer(data) {
             console.log('nn media');
         }
     }
-}
-
-/*******************function write element to DOM****************************/
-// create element with params (url, target, etc)
-const newCreateElement = (element, parent, json) => {
-    const balise = document.createElement(element);
-    //get other params (src, textContent, etc)
-    //with this we can add param easly
-    Object.entries(json).forEach(([key, value]) => {
-        if (key === 'textContent') {
-            balise.textContent = value;
-        }
-        else if (key === 'addEventListenerLikes') {
-            balise.addEventListener("click", function () {
-                arraylikes(value);
-            });
-        }
-        else {
-            balise.setAttribute(key, value);
-        }
-
-    });
-    parent.appendChild(balise)
-    console.log('parent.appendChild')
-    console.log(parent)
 }
 
 /*******************filter data****************************/
@@ -167,7 +154,7 @@ function sortArray(typeSort) {
             console.log('-> decroissant Title');
         }
     }
-    return allDataFilter;   
+    return allDataFilter;
 }
 
 
@@ -177,7 +164,7 @@ const EventSortDate = document.querySelector("#filterDate");
 EventSortDate.addEventListener("click", function () {
     deleteData();
     sortArray('date');
-    writeArray(allDataFilter);
+    writeElementMediaP(allDataFilter);
     console.log(allDataFilter);
 });
 
@@ -186,7 +173,7 @@ const EventSortLikes = document.querySelector("#filterLikes");
 EventSortLikes.addEventListener("click", function () {
     deleteData();
     sortArray('likes');
-    writeArray(allDataFilter);
+    writeElementMediaP(allDataFilter);
     console.log(allDataFilter);
 });
 
@@ -195,7 +182,7 @@ const EventSortTitle = document.querySelector("#filterTitle");
 EventSortTitle.addEventListener("click", function () {
     deleteData();
     sortArray('title');
-    writeArray(allDataFilter);
+    writeElementMediaP(allDataFilter);
     console.log(allDataFilter);
 });
 
@@ -203,7 +190,6 @@ EventSortTitle.addEventListener("click", function () {
 
 
 /*******************ARRAY LIKE****************************/
-let eventLike = "likeAdd";
 
 let totalLike = 0;
 //get total likes
@@ -230,10 +216,17 @@ async function Photographer(data, target) {
             const avatar = `assets/photographers/${data.photographers[i].portrait}`;
             newCreateElement('img', target, { src: avatar });
             numberPhoto.push(i);
+
+            newCreateElement("h1", headerBoxInfoP, { textContent: data.photographers[i].name, class: "nameP" });
+            newCreateElement("p", headerBoxInfoP, { textContent: data.photographers[i].country, class: "locationP" });
+            newCreateElement("p", headerBoxInfoP, { textContent: data.photographers[i].tagline, class: "locationP" });
         }
         else {
             console.log('bad photographer id');
         }
+
+
+
     }
 }
 
@@ -256,16 +249,16 @@ function deleteData() {
 }
 
 //write all data picture
-async function writeArray() {
+async function writeElementMediaP() {
     console.log('++++++++++parent');
     const dataJson = await getData()
 
     //get data = default array or filter array
     let dataz = "";
-    if(!allDataFilter || allDataFilter.length === 0){
+    if (!allDataFilter || allDataFilter.length === 0) {
         dataz = allDataPhoto;
     }
-    else{
+    else {
         dataz = allDataFilter;
     }
 
@@ -302,21 +295,34 @@ async function writeArray() {
         if (getData.image) {
             img = getData.image;
             const url = `assets/photographers/${nameAlone}/${img}`;
-            newCreateElement('img', contentMedia, { src: url, class: "img" });
+            newCreateElement('img', contentMedia, { src: url, class: "mediaP" });
         }
         else {
             img = getData.video;
             const url = `assets/photographers/${nameAlone}/${img}`;
-            newCreateElement('video', contentMedia, { src: url });
+            newCreateElement('video', contentMedia, { src: url, class: "mediaP"});
         }
 
+        //box content media info = name media, number likes, icone like
+        let boxMediaInfo = document.createElement('div');
+        boxMediaInfo.setAttribute('class', 'boxMediaInfo');
+        target003.appendChild(boxMediaInfo);
+
+        //title
+        newCreateElement('p', boxMediaInfo, { textContent: getData.title, class: "titleMedia" });
+
+        //box likes icon + number
+        let boxMediaInfoLikes = document.createElement('div');
+        boxMediaInfoLikes.setAttribute('class', 'boxMediaInfoLikes');
+        boxMediaInfo.appendChild(boxMediaInfoLikes);
+
         //total likes
-        newCreateElement('h3', ParentBoxMedia, { textContent: getData.likes, id: "LikesPicture" });
+        newCreateElement('p', boxMediaInfoLikes, { textContent: getData.likes, class: "LikesPicture" });
 
 
         //icon like
         let iconLikes = document.createElement('div');
-        const likesTotal = ParentBoxMedia.querySelector('#LikesPicture');
+        const likesTotal = ParentBoxMedia.querySelector('.LikesPicture');
 
         //target box totalLikes
         const accountTotal = document.querySelector('.totalLikes');
@@ -333,15 +339,10 @@ async function writeArray() {
             const y = parseInt(accountTotal.textContent) + 1;
             accountTotal.innerHTML = y;
         });
-        target003.appendChild(iconLikes);
-
-        //title
-        newCreateElement('p', ParentBoxMedia, { textContent: getData.title, id: "titleMedia" });
+        boxMediaInfoLikes.appendChild(iconLikes);
     }
-
-    
 }
-writeArray();
+writeElementMediaP();
 
 
 

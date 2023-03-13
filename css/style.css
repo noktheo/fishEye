@@ -44,7 +44,20 @@ h1 {
     font-size: 36px;
 }
 
-.photographer_section article img {
-    height: 200px;
-    width: 200px;
+/*** button **/
+
+.contact_button{
+    width: auto;
+    height: auto;
+    padding:15px 30px;
+    background-color: #901C1C;
+    color:white;
+    border: none;
+    border-radius: 5px;
+}
+
+.contact_button:hover{
+    transition-duration: 0.3s;
+    cursor:pointer;
+    background-color: #741515;
 }
