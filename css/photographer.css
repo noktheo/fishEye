@@ -189,6 +189,7 @@ form label {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
+    z-index: 1000;
 }
 
 .boxLightBox article{
