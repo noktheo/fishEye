@@ -219,7 +219,7 @@ async function Photographer(data, target) {
 
             newCreateElement("h1", headerBoxInfoP, { textContent: data.photographers[i].name, class: "nameP" });
             newCreateElement("p", headerBoxInfoP, { textContent: data.photographers[i].country, class: "locationP" });
-            newCreateElement("p", headerBoxInfoP, { textContent: data.photographers[i].tagline, class: "locationP" });
+            newCreateElement("p", headerBoxInfoP, { textContent: data.photographers[i].tagline, class: "descriptionP" });
         }
         else {
             console.log('bad photographer id');
@@ -352,7 +352,7 @@ async function writeElementMediaP() {
 
             //box before media
             let beforeMedia = document.createElement('div');
-            beforeMedia.className = "changeMedia";
+            beforeMedia.className = "changeMedia arrowReturn";
 
             let targetContentMediaLightBox = document.querySelector(".boxLightBox");
             targetContentMediaLightBox.appendChild(beforeMedia);
@@ -404,7 +404,7 @@ async function writeElementMediaP() {
 
             //box before media
             let afterMedia = document.createElement('div');
-            afterMedia.className = "changeMedia";
+            afterMedia.className = "changeMedia arrowNext";
 
             //box event next img (media)
             targetContentMediaLightBox.appendChild(afterMedia);

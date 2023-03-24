@@ -45,7 +45,7 @@
       <div class="formData">
         <label for="comment">Votre Message</label>
         <textarea class="text-control inputComment" name="comment" id='comment'>
-         
+
           </textarea>
         </br>
         <span id='error'></span>
@@ -64,7 +64,7 @@
   <main id="main">
     <div id="lightbox" style="display: none;"></div>
     <section class="photographe">
-      
+
       <div id="headerInfoP">
         <p id="descriptionPhotographer"></p>
       </div>
@@ -73,13 +73,19 @@
 
     <section class="collectionPhotographer">
       <div class="collectionPhotographerheader">
-        <p>Trier par</p>
-        <ul class="filterImg">
-          <li id="filterLikes">Populariter</li>
-          <li id="filterDate">Date</li>
-          <li id="filterTitle">Titre</li>
-        </ul>
+        <label for="filterMedia">Trier par</label>
+        <div class="select-container">
+          <select id="filterMedia" class="custom-select">
+            <option id="filterLikes" value="option2">Popularité</option>
+            <option id="filterDate" value="option3">Date</option>
+            <option id="filterTitle" value="option4">Titre</option>
+          </select>
+          <div class="iconFilter"></div>
+        </div>
+        
       </div>
+
+
 
     </section>
 

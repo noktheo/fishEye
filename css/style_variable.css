@@ -1,0 +1,18 @@
+:root {
+    --font-default: "DM Sans", Arial, Helvetica, sans-serif;
+    --font-slab: var(--font-default);
+    --modal-duration: 0.8s;
+
+    /*color*/
+    --colorEntrepriseUp:#901C1C;
+    --colorEntrepriseDown:#D3573C;
+    --colorNeutralDown: #525252;
+    --colorNeutralSwap: #ffffff;
+    
+    /*test*/
+    --fontSizeTitle:50px;
+    --fontSizeminiTitle:30px;
+    --fontSizeCoreUp:22px;
+    --fontSizeCore:15px;
+    --fontSizeCoredown:13px;
+}
