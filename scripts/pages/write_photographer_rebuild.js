@@ -156,9 +156,41 @@ function sortArray(typeSort) {
     }
     return allDataFilter;
 }
-
+sortArray();
 
 /*******************EVENT****************************/
+
+const EventSort = document.querySelector("#filterMedia");
+EventSort.addEventListener("change", function () {
+
+    if (this.value == "option2") {
+        console.log(this.value);
+        deleteData();
+        sortArray('date');
+
+        writeElementMediaP(allDataFilter);
+        console.log(allDataFilter);
+    }
+    else if (this.value == "option3") {
+        console.log(this.value);
+        deleteData();
+        sortArray('likes');
+
+        writeElementMediaP(allDataFilter);
+        console.log(allDataFilter);
+    }
+    else if (this.value == "option4") {
+        console.log(this.value);
+        deleteData();
+        sortArray('title');
+
+        writeElementMediaP(allDataFilter);
+        console.log(allDataFilter);
+    }
+
+
+});
+/*
 //date sort
 const EventSortDate = document.querySelector("#filterDate");
 EventSortDate.addEventListener("click", function () {
@@ -170,7 +202,7 @@ EventSortDate.addEventListener("click", function () {
 
 // likes sort
 const EventSortLikes = document.querySelector("#filterLikes");
-EventSortLikes.addEventListener("click", function () {
+EventSortLikes.addEventListener("change", function () {
     deleteData();
     sortArray('likes');
     writeElementMediaP(allDataFilter);
@@ -188,7 +220,7 @@ EventSortTitle.addEventListener("click", function () {
 
 //add like
 
-
+*/
 /*******************ARRAY LIKE****************************/
 
 let totalLike = 0;
@@ -244,7 +276,7 @@ function deleteData() {
 
         console.log("allDataFilter is array")
     } else {
-        console.error("allDataFilter is not an array");
+        console.log("allDataFilter is not an array");
     }
 }
 
@@ -366,7 +398,7 @@ async function writeElementMediaP() {
                 //remove media
                 const element = document.querySelector(".oui");
                 element.remove();
-                
+
                 //create img / video
                 lightBoxMedia()
             })
