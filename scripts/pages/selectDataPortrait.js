@@ -256,9 +256,11 @@ async function writeElementMediaP() {
 
     //create total like
     newCreateElement('p', targetFollower, { textContent: arraylikes(totalLike), class: 'totalLikes' });
-
+    let compteurTabIndex = 3;
+    
     //write multi element
     for (let i = 0; i < dataz.length; i++) {
+        
 
         const getData = dataz[i];
         //get name generate by regexp
@@ -270,8 +272,11 @@ async function writeElementMediaP() {
         //box content : img or video + name + follow
         let ParentBoxMedia = document.createElement('article');
         ParentBoxMedia.setAttribute('class', 'ParentBoxMedia');
+        ParentBoxMedia.tabIndex = compteurTabIndex;
         let target002 = document.querySelector('.collectionPhotographer');
         target002.appendChild(ParentBoxMedia);
+
+        compteurTabIndex++
 
         //box content : img or video
         let contentMedia = document.createElement('div');
