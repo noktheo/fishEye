@@ -180,37 +180,7 @@ EventSort.addEventListener("change", function () {
 
 
 });
-/*
-//date sort
-const EventSortDate = document.querySelector("#filterDate");
-EventSortDate.addEventListener("click", function () {
-    deleteData();
-    sortArray('date');
-    writeElementMediaP(allDataFilter);
-    console.log(allDataFilter);
-});
 
-// likes sort
-const EventSortLikes = document.querySelector("#filterLikes");
-EventSortLikes.addEventListener("change", function () {
-    deleteData();
-    sortArray('likes');
-    writeElementMediaP(allDataFilter);
-    console.log(allDataFilter);
-});
-
-// title sort
-const EventSortTitle = document.querySelector("#filterTitle");
-EventSortTitle.addEventListener("click", function () {
-    deleteData();
-    sortArray('title');
-    writeElementMediaP(allDataFilter);
-    console.log(allDataFilter);
-});
-
-//add like
-
-*/
 /*******************ARRAY LIKE****************************/
 
 let totalLike = 0;

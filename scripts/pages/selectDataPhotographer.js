@@ -20,7 +20,7 @@ async function displayData() {
         //target function and push data
         const photographerModel = photographerFactory(fetchData.photographers[i]);
         //id of photographers data
-        const userCardDOM = photographerModel.getUserCardDOM(fetchData.photographers[i].id);
+        const userCardDOM = photographerModel.getUserCardDOM(fetchData.photographers[i].id, i);
         photographersSection.appendChild(userCardDOM);
     };
 };

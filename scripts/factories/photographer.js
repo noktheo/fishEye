@@ -3,10 +3,15 @@ export function photographerFactory(data) {
 
     const picture = `assets/photographers/${portrait}`;
 
-    function getUserCardDOM(id) {
+    function getUserCardDOM(id, count) {
+        //compteur tabindex +1
+        count++
+
         /*box photographers*/
-        const article = document.createElement( 'article' );
-        article.tabIndex = 1;
+        const article = document.createElement('article');
+        article.tabIndex = count;
+        console.log(count);
+        
         article.addEventListener('click', (e) => {
             e.preventDefault();
             localStorage.setItem('id', `${id}`);
@@ -14,20 +19,20 @@ export function photographerFactory(data) {
         });
 
         /*img*/
-        const boxImg = document.createElement( 'div' );
-        const img = document.createElement( 'img' );
+        const boxImg = document.createElement('div');
+        const img = document.createElement('img');
         img.setAttribute("src", picture)
 
         /*name*/
-        const h2 = document.createElement( 'h2' );
+        const h2 = document.createElement('h2');
         h2.textContent = name;
 
         /*price*/
-        const p = document.createElement( 'p' );
+        const p = document.createElement('p');
         p.textContent = price;
 
         /*city*/
-        const pCity = document.createElement( 'p' );
+        const pCity = document.createElement('p');
         pCity.textContent = city;
 
         /*write all balise on article -> box photographers*/
@@ -36,6 +41,7 @@ export function photographerFactory(data) {
         article.appendChild(h2);
         article.appendChild(p);
         article.appendChild(pCity);
+
         return (article);
     }
     return { name, picture, getUserCardDOM }
