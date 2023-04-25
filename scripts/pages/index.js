@@ -111,12 +111,14 @@ async function getPhotographers() {
 
         //push on array
         photographersList.push(photographers)
-        console.log(photographers)
+        console.log("----photographersList----")
+        console.log(photographersList)
     }
 
     //return data array of all photograpers
     return ({
         photographers: [...photographersList]
+        
     })
 }
 
@@ -125,6 +127,8 @@ async function displayData(photographers) {
 
     photographers.forEach((photographer) => {
         const photographerModel = photographerFactory(photographer);
+        console.log("push to factory")
+        console.log(photographers)
         const userCardDOM = photographerModel.getUserCardDOM(photographer.id);
         photographersSection.appendChild(userCardDOM);
     });
@@ -133,6 +137,8 @@ async function displayData(photographers) {
 async function init() {
     // Récupère les datas des photographes
     const { photographers } = await getPhotographers();
+    console.log(photographers);
+    console.log("test-----------")
     displayData(photographers);
 };
 

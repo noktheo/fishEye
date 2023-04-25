@@ -1,0 +1,56 @@
+/*icon close*/
+/****LightBox*************************/
+
+.boxLightBox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex-direction: row;
+    z-index: 1000;
+}
+
+/****button next / return*******/
+.changeMedia {
+    width: 50px;
+    height: 50px;
+    background-image: url(../assets/icons/icon_arrow_filter_red.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: rotate(-90deg);
+}
+
+.arrowNext {
+    transform: rotate(90deg);
+}
+
+.changeMedia:hover {
+    cursor: pointer;
+    background-image: url(../assets/icons/icon_arrow_filter_black.svg);
+}
+
+/*media*/
+.contentMediaLigtBox {
+    height: 80%;
+    max-width: 80%;
+    margin: 10px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.contentMediaLigtBox .oui {
+    height: 100%;
+}
+
+.closeIconLightbox {
+    width: 10px;
+    height:10px;
+    background-color: red;
+}

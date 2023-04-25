@@ -1,4 +1,4 @@
-function photographerFactory(data) {
+export function photographerFactory(data) {
     const { name, portrait, price, city } = data;
 
     const picture = `assets/photographers/${portrait}`;
@@ -6,6 +6,7 @@ function photographerFactory(data) {
     function getUserCardDOM(id) {
         /*box photographers*/
         const article = document.createElement( 'article' );
+        article.tabIndex = 1;
         article.addEventListener('click', (e) => {
             e.preventDefault();
             localStorage.setItem('id', `${id}`);

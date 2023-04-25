@@ -3,6 +3,9 @@
 //function write Element on DOM
 import { newCreateElement } from '../utils/createElement.js';
 
+//function get data
+import { getData } from '../utils/getData.js';
+
 /************target***********/
 //target avatar
 const target = document.querySelector('.photographe');
@@ -44,20 +47,7 @@ const idPhotographer = localStorage.getItem('id');
 // id photographer
 let idP = '';
 
-/*******************get data****************************/
-//get json data
-async function getData() {
-    //get json
-    const response = await fetch('../data/photographers.json', {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/JSON'
-        }
-    });
-    const data = await response.json();
-
-    return data;
-}
+/***********************************************/
 
 //send data on fonction
 async function pageDomPhotographer() {
@@ -373,6 +363,13 @@ async function writeElementMediaP() {
         });
         boxMediaInfoLikes.appendChild(iconLikes);
 
+      
+
+        function closeLightbox() {
+            const lightbox = document.querySelector(".boxLightBox");
+            lightbox.remove();
+        }
+
         //open lightbox
         function openLightbox() {
             console.log(dataz);
@@ -414,6 +411,10 @@ async function writeElementMediaP() {
             let targetMediaLightBox = document.querySelector(".contentMediaLigtBox");
             function lightBoxMedia() {
                 console.log(compteurMedia);
+
+                //icon close
+
+
                 if (dataz[compteurMedia].image) {
                     let mediaLightBox = document.createElement('img');
                     mediaLightBox.className = "oui";
@@ -421,6 +422,11 @@ async function writeElementMediaP() {
                     console.log(dataz[compteurMedia]);
                     mediaLightBox.src = `assets/photographers/${nameAlone}/${dataz[compteurMedia].image}`;
                     console.log(`assets/photographers/${nameAlone}/${dataz[compteurMedia].image}`);
+
+                    let closeIconLightbox = document.createElement('div');
+                    closeIconLightbox.className = "closeIconLightbox";
+                    targetMediaLightBox.appendChild(closeIconLightbox);
+
                     targetMediaLightBox.appendChild(mediaLightBox);
                 }
                 else {
