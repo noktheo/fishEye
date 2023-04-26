@@ -257,10 +257,10 @@ async function writeElementMediaP() {
     //create total like
     newCreateElement('p', targetFollower, { textContent: arraylikes(totalLike), class: 'totalLikes' });
     let compteurTabIndex = 3;
-    
+
     //write multi element
     for (let i = 0; i < dataz.length; i++) {
-        
+
 
         const getData = dataz[i];
         //get name generate by regexp
@@ -338,7 +338,7 @@ async function writeElementMediaP() {
         });
         boxMediaInfoLikes.appendChild(iconLikes);
 
-      
+
 
         function closeLightbox() {
             const lightbox = document.querySelector(".boxLightBox");
@@ -351,14 +351,23 @@ async function writeElementMediaP() {
             let compteurMedia = i;
             console.log(compteurMedia);
 
+
+
             //create box content
             newCreateElement('section', targetLightBox, { class: "boxLightBox" });
+            let targetContentMediaLightBox = document.querySelector(".boxLightBox");
+
+            //create icon close lightbox
+            let closeIconLightbox = document.createElement('div');
+            closeIconLightbox.className = "closeIconLightbox";
+            closeIconLightbox.addEventListener('click', closeLightbox);
+            targetContentMediaLightBox.appendChild(closeIconLightbox);
 
             //box before media
             let beforeMedia = document.createElement('div');
             beforeMedia.className = "changeMedia arrowReturn";
 
-            let targetContentMediaLightBox = document.querySelector(".boxLightBox");
+
             targetContentMediaLightBox.appendChild(beforeMedia);
             beforeMedia.addEventListener('click', () => {
                 compteurMedia--;
@@ -375,21 +384,22 @@ async function writeElementMediaP() {
                 lightBoxMedia()
             })
 
+
+
             //box img
             let contentMediaLightBox = document.createElement('article');
             contentMediaLightBox.className = "contentMediaLigtBox";
-            contentMediaLightBox.addEventListener('click', () => { console.log("dadaaaaaaa") })
+
 
             targetContentMediaLightBox.appendChild(contentMediaLightBox);
 
             //create img / video
             let targetMediaLightBox = document.querySelector(".contentMediaLigtBox");
+
             function lightBoxMedia() {
                 console.log(compteurMedia);
 
-                //icon close
-
-
+                //img or video
                 if (dataz[compteurMedia].image) {
                     let mediaLightBox = document.createElement('img');
                     mediaLightBox.className = "oui";
@@ -398,9 +408,8 @@ async function writeElementMediaP() {
                     mediaLightBox.src = `assets/photographers/${nameAlone}/${dataz[compteurMedia].image}`;
                     console.log(`assets/photographers/${nameAlone}/${dataz[compteurMedia].image}`);
 
-                    let closeIconLightbox = document.createElement('div');
-                    closeIconLightbox.className = "closeIconLightbox";
-                    targetMediaLightBox.appendChild(closeIconLightbox);
+
+
 
                     targetMediaLightBox.appendChild(mediaLightBox);
                 }
@@ -411,6 +420,7 @@ async function writeElementMediaP() {
                     console.log(`assets/photographers/${nameAlone}/${dataz[compteurMedia].video}`);
                     targetMediaLightBox.appendChild(mediaLightBox);
                 }
+
             }
             lightBoxMedia()
 

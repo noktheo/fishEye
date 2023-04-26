@@ -50,6 +50,9 @@
 }
 
 .closeIconLightbox {
+    position: absolute;
+    right:100px;
+    top:50px;
     width: 10px;
     height:10px;
     background-color: red;
