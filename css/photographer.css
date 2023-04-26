@@ -5,7 +5,7 @@ body {
 /**PHOTOGRAPH********************************/
 
 .photographe {
-    background-color: rgb(234, 234, 234);
+    background-color: var(--colorBackgroundLight);
 }
 
 /**COLLECTION******************************/
@@ -25,7 +25,7 @@ body {
 }
 
 .ParentBoxMedia:hover {
-    background-color: #db897611;
+    background-color: var(--colorBackgroundColorEntreprise);
     cursor: pointer;
 }
 
@@ -145,7 +145,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 
-    background-color: rgb(101, 101, 101);
+    background-color: var(--colorNeutralDown);
     padding: 30px;
     flex-direction: column;
 }
@@ -172,7 +172,7 @@ body {
 
 .modal {
     border-radius: 5px;
-    background-color: #DB8876;
+    background-color: var(--colorEntrepriseDown);
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -216,7 +216,7 @@ form label {
     border-radius: 5px 5px 0 0;
     height: 50px;
     min-width: 250px;
-    background-color: red;
+    background-color: var(--colorEntrepriseUp);
     bottom: 0;
     right: 50px;
 }

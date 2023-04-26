@@ -153,7 +153,7 @@ sortArray();
 const EventSort = document.querySelector("#filterMedia");
 EventSort.addEventListener("change", function () {
 
-    if (this.value == "option2") {
+    if (this.value == "option3") {
         console.log(this.value);
         deleteData();
         sortArray('date');
@@ -161,7 +161,7 @@ EventSort.addEventListener("change", function () {
         writeElementMediaP(allDataFilter);
         console.log(allDataFilter);
     }
-    else if (this.value == "option3") {
+    else if (this.value == "option2") {
         console.log(this.value);
         deleteData();
         sortArray('likes');

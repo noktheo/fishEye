@@ -8,6 +8,7 @@ body {
     margin: 0;
 }
 
+/*head*/
 
 header {
     display: flex;
@@ -18,7 +19,7 @@ header {
 }
 
 h1 {
-    color: #901C1C;
+    color: var(--colorEntrepriseUp);
     margin-right: 100px;
 }
 
@@ -27,23 +28,49 @@ h1 {
     margin-left: 100px;
 }
 
+
+
+/*card photographer*/
+
 .photographer_section {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     margin-top: 100px;
 }
 
 .photographer_section article {
     justify-self: center;
     display: flex;
-    justify-content: center;
+    justify-content: center;    
     align-items: center;
     flex-direction: column;
+    width: calc(32% - 30px);
+    padding:25px 15px;
+    border-radius: 15px;
+}
+
+.photographer_section article:hover, .photographer_section article:focus-visible {
+    transition-duration: 0.3s;
+    background-color: var(--colorBackgroundDark-);
+    box-shadow: 3px 3px 5px 6px var(--colorShadowDark);
+    cursor: pointer;
+    outline: none;
+}
+
+.photographer_section article div{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.photographer_section article div img{
+    width: 105%;
 }
 
 .photographer_section article h2 {
-    color: #D3573C;
+    color: var(--colorEntrepriseDown);
     font-size: 36px;
 }
 
@@ -53,7 +80,7 @@ h1 {
     width: auto;
     height: auto;
     padding:15px 30px;
-    background-color: #901C1C;
+    background-color: var(--colorEntrepriseDown);
     color:white;
     border: none;
     border-radius: 5px;
@@ -62,6 +89,6 @@ h1 {
 .contact_button:hover{
     transition-duration: 0.3s;
     cursor:pointer;
-    background-color: #741515;
+    background-color: var(--colorEntrepriseUp)
 }
 

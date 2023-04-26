@@ -8,7 +8,13 @@
     --colorEntrepriseDown:#D3573C;
     --colorNeutralDown: #525252;
     --colorNeutralSwap: #ffffff;
-    
+
+    --colorBackgroundLight: rgb(234, 234, 234);
+    --colorBackgroundDark:rgba(235, 235, 235, 0.192);
+    --colorBackgroundColorEntreprise:#db897611;
+
+    --colorShadowDark:#cccccc2a;
+
     /*test*/
     --fontSizeTitle:50px;
     --fontSizeminiTitle:30px;
