@@ -146,9 +146,14 @@ body {
     border-radius: 5px 5px 0 0;
     height: 50px;
     min-width: 250px;
-    background-color: var(--colorEntrepriseUp);
+    padding: 2px 10px;
+    background-color: var(--colorEntrepriseDownLow);
     bottom: 0;
     right: 50px;
+}
+
+.totalLikes{
+    font-family: var(--font-default);
 }
 
 /**filter*************************/
@@ -187,8 +192,6 @@ select {
     border-radius: 5px;
     display: flex;
     flex-wrap: nowrap;
-
-
 }
 
 label {
@@ -221,8 +224,6 @@ label {
 
 .custom-select option {
     border-bottom: 2px solid var(--colorNeutralSwap);
-
-
     background-color: var(--colorEntrepriseUp);
 }
 
