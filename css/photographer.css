@@ -1,3 +1,7 @@
+@import url("style_variable.css");
+@import url("universal.css");
+@import url("button.css");
+
 body {
     padding: 0 50px;
 }
@@ -136,80 +140,6 @@ body {
     height: 85%;
 }
 
-/****CONTACT**MODAL***************************/
-
-#contact_modal {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    background-color: var(--colorNeutralDown);
-    padding: 30px;
-    flex-direction: column;
-}
-
-.formData {
-    margin: 5px 0;
-    display: flex;
-    flex-direction: column;
-}
-
-.formData label {
-    font-size: 20px;
-}
-
-.text-control {
-    height: 40px;
-    border: none;
-    border-radius: 5px;
-}
-
-.inputComment {
-    height: 80px;
-}
-
-.modal {
-    border-radius: 5px;
-    background-color: var(--colorEntrepriseDown);
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 35px;
-    margin: auto;
-}
-
-.modal header {
-    justify-content: space-between;
-    width: 100%;
-}
-
-.modal header img {
-    cursor: pointer;
-}
-
-.modal header h2 {
-    font-size: 64px;
-    font-weight: normal;
-    text-align: center;
-}
-
-form {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-form label {
-    color: #312E2E;
-    font-size: 36px;
-}
-
-
 /****FOLLOWER*************************/
 .compteurFollower {
     position: fixed;
@@ -220,9 +150,6 @@ form label {
     bottom: 0;
     right: 50px;
 }
-
-
-
 
 /**filter*************************/
 /**box content filter + triée par*/

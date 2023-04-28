@@ -1,0 +1,17 @@
+/*** button **/
+
+.contact_button{
+    width: auto;
+    height: auto;
+    padding:15px 30px;
+    background-color: var(--colorEntrepriseDown);
+    color:white;
+    border: none;
+    border-radius: 5px;
+}
+
+.contact_button:hover{
+    transition-duration: 0.3s;
+    cursor:pointer;
+    background-color: var(--colorEntrepriseUp)
+}

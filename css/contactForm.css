@@ -1,0 +1,90 @@
+@import url("style_variable.css");
+
+/****CONTACT**MODAL***************************/
+
+#contact_modal {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 670px;
+    background-color: var(--colorEntrepriseDownLow);
+    padding: 30px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    border-radius: 5px;
+}
+
+/*header*/
+#contact_modal header{
+    width: 100%;
+}
+
+/*label*/
+#FormLogin{
+    align-items: start;
+}
+
+.formData {
+    width: 100%;
+    margin: 5px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.formData label {
+    font-size: 20px;
+}
+
+.text-control {
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+}
+
+.inputComment {
+    height: 80px;
+}
+
+.modal {
+    border-radius: 5px;
+    background-color: var(--colorEntrepriseDown);
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 35px;
+    margin: auto;
+}
+
+.modal header {
+    justify-content: space-between;
+    width: 100%;
+}
+
+.modal header img {
+    cursor: pointer;
+}
+
+.modal header h2 {
+    font-size: 64px;
+    font-weight: normal;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+form label {
+    color: #312E2E;
+    font-size: 36px;
+}
