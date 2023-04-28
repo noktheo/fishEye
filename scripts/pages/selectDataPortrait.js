@@ -256,8 +256,8 @@ async function writeElementMediaP() {
 
     //create total like
     newCreateElement('p', targetFollower, { textContent: arraylikes(totalLike), class: 'totalLikes' });
-    newCreateElement('div', targetFollower, { class:'iconTotalLikes' });
-    newCreateElement('p', targetFollower, { class:"priceDay", textContent: "300€/ jour" });
+    newCreateElement('div', targetFollower, { class: 'iconTotalLikes' });
+    newCreateElement('p', targetFollower, { class: "priceDay", textContent: "300€/ jour" });
     let compteurTabIndex = 3;
 
     //write multi element
@@ -274,7 +274,7 @@ async function writeElementMediaP() {
         //box content : img or video + name + follow
         let ParentBoxMedia = document.createElement('article');
         ParentBoxMedia.setAttribute('class', 'ParentBoxMedia');
-        ParentBoxMedia.tabIndex = compteurTabIndex;
+        ParentBoxMedia.tabIndex = 0;
         let target002 = document.querySelector('.collectionPhotographer');
         target002.appendChild(ParentBoxMedia);
 
@@ -365,6 +365,8 @@ async function writeElementMediaP() {
             closeIconLightbox.addEventListener('click', closeLightbox);
             targetContentMediaLightBox.appendChild(closeIconLightbox);
 
+
+
             //box before media
             let beforeMedia = document.createElement('div');
             beforeMedia.className = "changeMedia arrowReturn";
@@ -392,7 +394,6 @@ async function writeElementMediaP() {
             let contentMediaLightBox = document.createElement('article');
             contentMediaLightBox.className = "contentMediaLigtBox";
 
-
             targetContentMediaLightBox.appendChild(contentMediaLightBox);
 
             //create img / video
@@ -409,19 +410,23 @@ async function writeElementMediaP() {
                     console.log(dataz[compteurMedia]);
                     mediaLightBox.src = `assets/photographers/${nameAlone}/${dataz[compteurMedia].image}`;
                     console.log(`assets/photographers/${nameAlone}/${dataz[compteurMedia].image}`);
-
-
-
-
                     targetMediaLightBox.appendChild(mediaLightBox);
+
                 }
                 else {
                     let mediaLightBox = document.createElement('video');
-                    mediaLightBox.className = "oui";
+                    mediaLightBox.className = "pictureLightbox";
                     mediaLightBox.src = `assets/photographers/${nameAlone}/${dataz[compteurMedia].video}`;
                     console.log(`assets/photographers/${nameAlone}/${dataz[compteurMedia].video}`);
                     targetMediaLightBox.appendChild(mediaLightBox);
                 }
+
+                //title
+                let titleMedia = document.createElement('p');
+                titleMedia.className = "titleMediaLightbox";
+                titleMedia.textContent = dataz[compteurMedia].title;
+                targetContentMediaLightBox.appendChild(titleMedia);
+
 
             }
             lightBoxMedia()
@@ -441,8 +446,11 @@ async function writeElementMediaP() {
                 }
 
                 //remove media
-                const element = document.querySelector(".oui");
+                const element = document.querySelector(".pictureLightbox");
                 element.remove();
+
+                const elementTitle = document.querySelector(".titleMediaLightbox");
+                elementTitle.remove();
 
                 //create img / video
                 lightBoxMedia()

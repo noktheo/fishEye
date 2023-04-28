@@ -27,6 +27,7 @@
     transform: rotate(-90deg);
 }
 
+/*icon arrow after or before media*/
 .arrowNext {
     transform: rotate(90deg);
 }
@@ -38,17 +39,28 @@
 
 /*media*/
 .contentMediaLigtBox {
-    height: 80%;
+    height: 80%; 
     max-width: 80%;
     margin: 10px;
     border-radius: 15px;
     overflow: hidden;
 }
 
+/*media (picture or video)*/
 .contentMediaLigtBox .pictureLightbox {
     height: 100%;
 }
 
+/*title media*/
+.titleMediaLightbox{
+    font-family: var(--font-default);
+    font-weight: 500;
+    position: absolute;
+    bottom: 30px;
+ 
+}
+
+/*icon close*/
 .closeIconLightbox {
     position: absolute;
     right:80px;

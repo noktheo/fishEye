@@ -22,12 +22,16 @@
 /*header*/
 .FormHeader{
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .FormHeader h2 {
     font-size: var(--fontSizeTitle);
     font-weight: normal;
     text-align: center;
+    margin: 0;
 }
 
 /*icon close*/
