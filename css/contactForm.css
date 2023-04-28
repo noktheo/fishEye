@@ -20,9 +20,29 @@
 }
 
 /*header*/
-#contact_modal header{
+.FormHeader{
     width: 100%;
 }
+
+.FormHeader h2 {
+    font-size: var(--fontSizeTitle);
+    font-weight: normal;
+    text-align: center;
+}
+
+/*icon close*/
+.closeIconContact{
+    width: 35px;
+    height: 35px;
+    background-size: contain;
+    background-image: url(../assets/icons/icon_close_white.svg);
+}
+
+.closeIconContact:hover{
+    cursor: pointer;
+    background-image: url(../assets/icons/icon_close_black.svg);
+}
+
 
 /*label*/
 #FormLogin{
@@ -41,7 +61,7 @@
 }
 
 .text-control {
-    height: 40px;
+    height: 45px;
     border: none;
     border-radius: 5px;
 }
@@ -62,21 +82,6 @@
     margin: auto;
 }
 
-.modal header {
-    justify-content: space-between;
-    width: 100%;
-}
-
-.modal header img {
-    cursor: pointer;
-}
-
-.modal header h2 {
-    font-size: 64px;
-    font-weight: normal;
-    text-align: center;
-}
-
 form {
     display: flex;
     width: 100%;
@@ -87,4 +92,10 @@ form {
 form label {
     color: #312E2E;
     font-size: 36px;
+}
+
+/**message error*/
+
+#error{
+    color: var(--colorEntrepriseUp);
 }

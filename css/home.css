@@ -10,6 +10,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 100px;
+    padding:10px;
 }
 
 .photographer_section article {
@@ -21,6 +22,12 @@
     width: calc(32% - 30px);
     padding:25px 15px;
     border-radius: 15px;
+}
+
+@media screen and (max-width: 1060px) {
+    .photographer_section article {
+        width: calc(50% - 30px);
+    }
 }
 
 .photographer_section article:hover, .photographer_section article:focus-visible {

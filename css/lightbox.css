@@ -58,3 +58,8 @@
     background-size: contain;
     background-image: url(../assets/icons/icon_close_red.svg);
 }
+
+.closeIconLightbox:hover{
+    background-image: url(../assets/icons/icon_close_black.svg);
+    cursor: pointer;
+}
