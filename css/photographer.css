@@ -2,12 +2,63 @@
 @import url("universal.css");
 @import url("button.css");
 
-
-/**PHOTOGRAPH********************************/
+/***********HEADER INFO PHOTOGRAPH***/
 
 .photographe {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5% 5%;
+    height: 300px;
     background-color: var(--colorBackgroundLight);
 }
+
+
+
+
+#headerInfoP {
+    padding-left: 20px;
+}
+
+/*name photographe*/
+.nameP {
+    font-size: var(--fontSizeTitle);
+    color: var(--colorEntrepriseDown);
+}
+
+/*location*/
+.locationP {
+    font-size: var(--fontSizeminiTitle);
+    color: var(--colorEntrepriseUp);
+}
+
+.descriptionP {
+    font-size: var(--fontSizeCore);
+    color: var(--colorNeutralDown);
+}
+
+/*img profil*/
+.photographe img {
+    border-radius: 50%;
+    height: 85%;
+}
+
+@media screen and (max-width: 1060px) {
+    .photographe{
+        flex-direction: column;
+        height: auto;
+        align-items: flex-start;
+        
+    }
+    
+    .photographe img{
+        margin-top: 20px;
+        height: 150px;
+    }
+}
+
 
 /**COLLECTION******************************/
 
@@ -25,6 +76,19 @@
     border-radius: 15px;
 }
 
+@media screen and (max-width: 1060px) {
+    .ParentBoxMedia {
+        width: calc(50% - 10px);
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .ParentBoxMedia {
+        margin: 15px 0px;
+        width: 100%;
+    }
+}
+
 .ParentBoxMedia:hover {
     background-color: var(--colorBackgroundColorEntreprise);
     cursor: pointer;
@@ -38,6 +102,7 @@
     height: 300px;
     border-radius: 5px;
     overflow: hidden;
+    
 }
 
 /**media*/
@@ -45,7 +110,10 @@
     width: 130%;
     margin: auto;
     transition-duration: 0.3s;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-12%,0%);
 }
+
 
 .ParentBoxMedia:hover .mediaP {
     transition-duration: 0.3s;
@@ -98,47 +166,13 @@
 }
 
 
-/***********HEADER INFO PHOTOGRAPH***/
 
-.photographe {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5% 5%;
-    height: 300px;
-}
-
-#headerInfoP {
-    padding-left: 20px;
-}
-
-/*name photographe*/
-.nameP {
-    font-size: var(--fontSizeTitle);
-    color: var(--colorEntrepriseDown);
-}
-
-/*location*/
-.locationP {
-    font-size: var(--fontSizeminiTitle);
-    color: var(--colorEntrepriseUp);
-}
-
-.descriptionP {
-    font-size: var(--fontSizeCore);
-    color: var(--colorNeutralDown);
-}
-
-/*img profil*/
-.photographe img {
-    border-radius: 50%;
-    height: 85%;
-}
 
 /****FOLLOWER*************************/
 .compteurFollower {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
     position: fixed;
     border-radius: 5px 5px 0 0;
     height: 50px;
@@ -147,10 +181,26 @@
     background-color: var(--colorEntrepriseDownLow);
     bottom: 0;
     right: 50px;
+    font-family:var(--font-default);
+    font-weight: 700;
 }
 
 .totalLikes{
     font-family: var(--font-default);
+}
+
+.iconTotalLikes{
+    margin-left: 10px;
+    width: 15px;
+    height:15px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url(../assets/icons/icon_likes_black.svg);
+}
+
+.priceDay{
+    position: absolute;
+    right: 10px;
 }
 
 /**filter*************************/

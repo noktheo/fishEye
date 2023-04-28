@@ -256,6 +256,8 @@ async function writeElementMediaP() {
 
     //create total like
     newCreateElement('p', targetFollower, { textContent: arraylikes(totalLike), class: 'totalLikes' });
+    newCreateElement('div', targetFollower, { class:'iconTotalLikes' });
+    newCreateElement('p', targetFollower, { class:"priceDay", textContent: "300€/ jour" });
     let compteurTabIndex = 3;
 
     //write multi element
@@ -402,7 +404,7 @@ async function writeElementMediaP() {
                 //img or video
                 if (dataz[compteurMedia].image) {
                     let mediaLightBox = document.createElement('img');
-                    mediaLightBox.className = "oui";
+                    mediaLightBox.className = "pictureLightbox";
                     console.log('dataz[compteurMedia]');
                     console.log(dataz[compteurMedia]);
                     mediaLightBox.src = `assets/photographers/${nameAlone}/${dataz[compteurMedia].image}`;
