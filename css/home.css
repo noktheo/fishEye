@@ -30,6 +30,12 @@
     }
 }
 
+@media screen and (max-width: 700px) {
+    .photographer_section article {
+        width: calc(100% - 30px);
+    }
+}
+
 .photographer_section article:hover, .photographer_section article:focus-visible {
     transition-duration: 0.3s;
     background-color: var(--colorBackgroundDark-);
@@ -51,5 +57,6 @@
 
 .photographer_section article h2 {
     color: var(--colorEntrepriseDown);
-    font-size: 36px;
+    font-size: var(--fontSizeminiTitle);
+    text-align: center;
 }
