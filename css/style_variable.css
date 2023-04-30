@@ -3,6 +3,7 @@
     --font-default: "DM Sans", Arial, Helvetica, sans-serif;
     --font-slab: var(--font-default);
     --modal-duration: 0.8s;
+    --modalDurationFast: 0.3s;
 
     /*color*/
     --colorEntrepriseUp:#901C1C;

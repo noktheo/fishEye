@@ -107,17 +107,16 @@
 
 /**media*/
 .mediaP {
-    width: 130%;
-    margin: auto;
-    transition-duration: 0.3s;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-12%,0%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition-duration: var(--modalDurationFast);
 }
 
 
 .ParentBoxMedia:hover .mediaP {
-    transition-duration: 0.3s;
-    width: 140%;
+    transition-duration: var(--modalDurationFast);
+    transform: scale(1.2);
 }
 
 /*box info under card img or video*/
