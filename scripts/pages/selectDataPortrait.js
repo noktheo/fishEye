@@ -31,9 +31,9 @@ const targetLightBox = document.querySelector('body');
 let numberPhoto = [];
 
 //variable event
-let sortOrderDate = "ascDate";
-let sortOrderLikes = "ascLikes";
-let sortOrderTitle = "ascTitle";
+let sortOrderDate = "desDate";
+let sortOrderLikes = "descLikes";
+let sortOrderTitle = "desTitle";
 
 //array 1 get data
 let allDataPhoto = [];
@@ -126,7 +126,8 @@ function sortArray(typeSort) {
     if (typeSort == 'likes') {
         if (sortOrderLikes === "ascLikes") {
             sortOrderLikes = "descLikes";
-            console.log('-> croissant Like');
+            console.log(sortOrderLikes);
+            console.log('-------sortOrderLikes');
         }
         else {
             sortOrderLikes = "ascLikes";
@@ -148,7 +149,28 @@ function sortArray(typeSort) {
 }
 sortArray();
 
+
+/*******************Detele TotalLikes Content****************************/
+
+function totalLikeContentTest() {
+    //target
+    let totalLikesTarget = document.querySelector('.totalLikes');
+    let priceDayTarget = document.querySelector('.priceDay');
+    let iconTotalLikesTarget = document.querySelector('.iconTotalLikes');
+
+    if (!totalLikesTarget || !priceDayTarget || !iconTotalLikesTarget) {
+        console.log("total Like Content null");
+    }
+    else {
+        totalLikesTarget.remove();
+        priceDayTarget.remove();
+        iconTotalLikesTarget.remove();
+    }
+};
+
+
 /*******************EVENT****************************/
+
 
 const EventSort = document.querySelector("#filterMedia");
 EventSort.addEventListener("change", function () {
@@ -157,7 +179,7 @@ EventSort.addEventListener("change", function () {
         console.log(this.value);
         deleteData();
         sortArray('date');
-
+        totalLikeContentTest();
         writeElementMediaP(allDataFilter);
         console.log(allDataFilter);
     }
@@ -165,7 +187,7 @@ EventSort.addEventListener("change", function () {
         console.log(this.value);
         deleteData();
         sortArray('likes');
-
+        totalLikeContentTest();
         writeElementMediaP(allDataFilter);
         console.log(allDataFilter);
     }
@@ -173,7 +195,7 @@ EventSort.addEventListener("change", function () {
         console.log(this.value);
         deleteData();
         sortArray('title');
-
+        totalLikeContentTest();
         writeElementMediaP(allDataFilter);
         console.log(allDataFilter);
     }
@@ -186,13 +208,18 @@ EventSort.addEventListener("change", function () {
 let totalLike = 0;
 //get total likes
 function arraylikes() {
+    //reset value
+    totalLike = 0;
+
     //get array of likes
     const arrayLikes = allDataPhoto.map(item => item.likes);
 
     //make just one number = total likes
     for (let i = 0; i < arrayLikes.length; i++) {
+
         totalLike = totalLike + arrayLikes[i];
     }
+
     return totalLike;
 }
 
@@ -240,6 +267,7 @@ function deleteData() {
     }
 }
 
+
 //write all data picture
 async function writeElementMediaP() {
     console.log('++++++++++parent');
@@ -258,7 +286,7 @@ async function writeElementMediaP() {
     newCreateElement('p', targetFollower, { textContent: arraylikes(totalLike), class: 'totalLikes' });
     newCreateElement('div', targetFollower, { class: 'iconTotalLikes' });
     newCreateElement('p', targetFollower, { class: "priceDay", textContent: "300€/ jour" });
-    let compteurTabIndex = 3;
+
 
     //write multi element
     for (let i = 0; i < dataz.length; i++) {
@@ -278,7 +306,6 @@ async function writeElementMediaP() {
         let target002 = document.querySelector('.collectionPhotographer');
         target002.appendChild(ParentBoxMedia);
 
-        compteurTabIndex++
 
         //box content : img or video
         let contentMedia = document.createElement('div');
@@ -294,12 +321,12 @@ async function writeElementMediaP() {
         if (getData.image) {
             img = getData.image;
             const url = `assets/photographers/${nameAlone}/${img}`;
-            newCreateElement('img', contentMedia, { src: url, class: "mediaP" });
+            newCreateElement('img', contentMedia, { src: url, class: "mediaP", alt: "picture of " + getData.title });
         }
         else {
             img = getData.video;
             const url = `assets/photographers/${nameAlone}/${img}`;
-            newCreateElement('video', contentMedia, { src: url, class: "mediaP" });
+            newCreateElement('video', contentMedia, { src: url, class: "mediaP", alt: "picture of " + getData.title });
         }
 
         //box content media info = name media, number likes, icone like
@@ -376,13 +403,18 @@ async function writeElementMediaP() {
             beforeMedia.addEventListener('click', () => {
                 compteurMedia--;
                 console.log(compteurMedia);
-                if (compteurMedia <= dataz.length) {
-                    compteurMedia = 0;
+                if (compteurMedia < 0) {
+                    compteurMedia = dataz.length - 1;
                 }
 
                 //remove media
-                const element = document.querySelector(".oui");
+                const element = document.querySelector(".pictureLightbox");
                 element.remove();
+
+                //remove title
+                const elementTitle = document.querySelector(".titleMediaLightbox");
+                elementTitle.remove();
+
 
                 //create img / video
                 lightBoxMedia()
@@ -449,6 +481,7 @@ async function writeElementMediaP() {
                 const element = document.querySelector(".pictureLightbox");
                 element.remove();
 
+                //remove title
                 const elementTitle = document.querySelector(".titleMediaLightbox");
                 elementTitle.remove();
 

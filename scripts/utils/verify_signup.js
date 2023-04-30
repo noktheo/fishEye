@@ -65,7 +65,7 @@ function form_verify() {
         setError(lastName, message);
     }
     else if (!lastValue.match(emailLastName)) {
-        let message = "Nom doit contenir de lettre";
+        let message = "Nom doit contenir une lettre";
         setError(lastName, message)
     }
     else if (lastValue.length < 3) {
