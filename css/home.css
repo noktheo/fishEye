@@ -13,6 +13,20 @@
     padding:10px;
 }
 
+.photographer_section p {
+    margin:0;
+}
+
+.locationPhotographer {
+    color: var(--colorEntrepriseUp);
+    font-size: var(--fontSizeCoreUp);
+}
+
+.pricePhtoographer {
+    color: var(--colorNeutralDown);
+    font-size: var(--fontSizeCoredown);
+}
+
 .photographer_section article {
     justify-self: center;
     display: flex;

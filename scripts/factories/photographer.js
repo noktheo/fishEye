@@ -1,5 +1,5 @@
 export function photographerFactory(data) {
-    const { name, portrait, price, city } = data;
+    const { name, portrait, tagline, city, price } = data;
 
     const picture = `assets/photographers/${portrait}`;
 
@@ -27,20 +27,30 @@ export function photographerFactory(data) {
         const h2 = document.createElement('h2');
         h2.textContent = name;
 
-        /*price*/
-        const p = document.createElement('p');
-        p.textContent = price;
-
         /*city*/
         const pCity = document.createElement('p');
         pCity.textContent = city;
+        pCity.className = "locationPhotographer";
+
+        /*tagline*/
+        const p = document.createElement('p');
+        p.textContent = tagline;
+
+        /*price*/
+        const pPrice = document.createElement('p');
+        pPrice.textContent = price + "€/jour";
+        pPrice.className = "pricePhtoographer";
+        
+
+        
 
         /*write all balise on article -> box photographers*/
         article.appendChild(boxImg);
         boxImg.appendChild(img);
         article.appendChild(h2);
-        article.appendChild(p);
         article.appendChild(pCity);
+        article.appendChild(p);
+        article.appendChild(pPrice);
 
         return (article);
     }
