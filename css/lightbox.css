@@ -55,9 +55,8 @@
 .titleMediaLightbox{
     font-family: var(--font-default);
     font-weight: 500;
-    position: absolute;
-    bottom: 30px;
- 
+    font-size:var(--fontSizeCore);
+    color:red;
 }
 
 /*icon close*/

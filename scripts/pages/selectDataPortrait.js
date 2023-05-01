@@ -6,9 +6,6 @@ import { newCreateElement } from '../utils/createElement.js';
 //function get data
 import { getData } from '../utils/getData.js';
 
-//function navigation on lightbox
-import { lightboxNavigationReturn, lightboxNavigationNext } from '../utils/lightboxNavigation.js';
-
 /************target***********/
 //target avatar
 const target = document.querySelector('.photographe');
@@ -329,7 +326,7 @@ async function writeElementMediaP() {
         else {
             img = getData.video;
             const url = `assets/photographers/${nameAlone}/${img}`;
-            newCreateElement('video', contentMedia, { src: url, class: "mediaP", alt: "picture of " + getData.title });
+            newCreateElement('video', contentMedia, { src: url, class: "mediaP", alt: "picture of " + getData.title, tabIndex: "-1" });
         }
 
         //box content media info = name media, number likes, icone like
@@ -375,6 +372,14 @@ async function writeElementMediaP() {
         function closeLightbox() {
             const lightbox = document.querySelector(".boxLightBox");
             lightbox.remove();
+
+            // Sélectionnez tous les éléments de la page
+            const elements = document.querySelectorAll('[tabindex]');
+
+            // Parcourez tous les éléments et supprimez le tabindex
+            elements.forEach((element) => {
+                element.tabIndex = 0;
+            });
         }
 
         //open lightbox
@@ -382,6 +387,23 @@ async function writeElementMediaP() {
             console.log(dataz);
             let compteurMedia = i;
             console.log(compteurMedia);
+
+
+            /*tabindex*/
+            // Sélectionnez tous les éléments de la page sauf la pop-up
+            const elements = document.querySelectorAll('[tabindex]');
+
+            // Parcourez tous les éléments et désactivez le tabindex
+            elements.forEach((element) => {
+                element.tabIndex = -1;
+            });
+            console.log(elements)
+            console.log('----elements')
+
+            const childrenWithTabIndex = document.querySelectorAll('.boxLightBox [tabindex]');
+            childrenWithTabIndex.forEach((element) => {
+                element.tabIndex = 0;
+            });
 
             //create box content
             newCreateElement('section', targetLightBox, { class: "boxLightBox" });
@@ -463,6 +485,7 @@ async function writeElementMediaP() {
                 if (dataz[compteurMedia].image) {
                     let mediaLightBox = document.createElement('img');
                     mediaLightBox.className = "pictureLightbox";
+                    mediaLightBox.tabIndex = 0;
                     console.log('dataz[compteurMedia]');
                     console.log(dataz[compteurMedia]);
                     mediaLightBox.src = `assets/photographers/${nameAlone}/${dataz[compteurMedia].image}`;
@@ -473,6 +496,7 @@ async function writeElementMediaP() {
                 else {
                     let mediaLightBox = document.createElement('video');
                     mediaLightBox.className = "pictureLightbox";
+                    mediaLightBox.tabIndex = 0;
                     mediaLightBox.src = `assets/photographers/${nameAlone}/${dataz[compteurMedia].video}`;
                     console.log(`assets/photographers/${nameAlone}/${dataz[compteurMedia].video}`);
                     targetMediaLightBox.appendChild(mediaLightBox);
@@ -482,7 +506,7 @@ async function writeElementMediaP() {
                 let titleMedia = document.createElement('p');
                 titleMedia.className = "titleMediaLightbox";
                 titleMedia.textContent = dataz[compteurMedia].title;
-                targetContentMediaLightBox.appendChild(titleMedia);
+                contentMediaLightBox.appendChild(titleMedia);
 
 
             }
