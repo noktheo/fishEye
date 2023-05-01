@@ -547,6 +547,7 @@ async function writeElementMediaP() {
             //arrow after media - event rightkey
             document.addEventListener('keydown', function (event) {
                 if (event.key === 'ArrowRight' || event.keyCode === 39) { // Vérifie si la touche enfoncée est la touche de droite
+
                     compteurMedia++;
                     console.log(compteurMedia);
                     if (compteurMedia >= dataz.length) {

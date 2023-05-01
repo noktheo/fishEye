@@ -24,7 +24,7 @@
       <div class="formData">
         <label for="userName">Prénom</label>
         <input class="text-control" type="text" name="userName" id='userName'>
- 
+
         <span class='error'></span>
       </div>
 
@@ -48,18 +48,20 @@
         <label for="comment">Votre Message</label>
         <textarea class="text-control inputComment" name="comment" id='comment'>
           </textarea>
-   
+
         <span class='error'></span>
       </div>
 
       <!--submit-->
-      <button class="contact_button" tabindex = "1" type="submit">Valider</button>
+      <button class="contact_button" tabindex="1" type="submit">Valider</button>
     </form>
   </div>
 
 
   <header class="mainHeader">
-    <img src="assets/logotype/logo.png" class="logo" alt="logotype du site Fisheye">
+    <a href="./index.html" tabindex="0">
+      <img src="assets/logotype/logo.png" href="" class="logo" alt="logotype du site Fisheye">
+    </a>
   </header>
 
   <main id="main">
@@ -68,15 +70,15 @@
       <div id="headerInfoP">
         <p id="descriptionPhotographer"></p>
       </div>
-      <button class="contact_button" tabindex = "0" onclick="displayModal()">Contactez-moi</button>
+      <button class="contact_button" tabindex="0" onclick="displayModal()">Contactez-moi</button>
     </section>
 
     <section class="collectionPhotographer">
       <div class="collectionPhotographerheader">
-        <label for="filterMedia"  >Trier par</label>
+        <label for="filterMedia">Trier par</label>
         <div class="select-container">
           <select id="filterMedia" tabindex="0" class="custom-select">
-            <option id="filterDefault"   value="option1">default</option>
+            <option id="filterDefault" value="option1">default</option>
             <option id="filterLikes" value="option2">Popularité</option>
             <option id="filterDate" value="option3">Date</option>
             <option id="filterTitle" value="option4">Titre</option>
