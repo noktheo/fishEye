@@ -233,7 +233,7 @@ async function Photographer(data, target) {
 
         if (idP == idPhotographer) {
             const avatar = `assets/photographers/${data.photographers[i].portrait}`;
-            newCreateElement('img', target, { src: avatar });
+            newCreateElement('img', target, { src: avatar, alt: "portrait of " + data.photographers[i].name });
             numberPhoto.push(i);
 
             newCreateElement("h1", headerBoxInfoP, { textContent: data.photographers[i].name, class: "nameP" });
@@ -343,7 +343,7 @@ async function writeElementMediaP() {
         boxMediaInfo.appendChild(boxMediaInfoLikes);
 
         //total likes
-        newCreateElement('p', boxMediaInfoLikes, { textContent: getData.likes, class: "LikesPicture" });
+        newCreateElement('p', boxMediaInfoLikes, { textContent: getData.likes, class: "LikesPicture", tabIndex : 0 });
 
 
         //icon like
@@ -486,6 +486,8 @@ async function writeElementMediaP() {
                     let mediaLightBox = document.createElement('img');
                     mediaLightBox.className = "pictureLightbox";
                     mediaLightBox.tabIndex = 0;
+                    mediaLightBox.setAttribute("alt", "picture : " + dataz[compteurMedia].title);
+
                     console.log('dataz[compteurMedia]');
                     console.log(dataz[compteurMedia]);
                     mediaLightBox.src = `assets/photographers/${nameAlone}/${dataz[compteurMedia].image}`;
@@ -497,6 +499,8 @@ async function writeElementMediaP() {
                     let mediaLightBox = document.createElement('video');
                     mediaLightBox.className = "pictureLightbox";
                     mediaLightBox.tabIndex = 0;
+                    mediaLightBox.setAttribute("alt", "video : " + dataz[compteurMedia].title);
+
                     mediaLightBox.src = `assets/photographers/${nameAlone}/${dataz[compteurMedia].video}`;
                     console.log(`assets/photographers/${nameAlone}/${dataz[compteurMedia].video}`);
                     targetMediaLightBox.appendChild(mediaLightBox);
