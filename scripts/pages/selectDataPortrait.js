@@ -243,9 +243,6 @@ async function Photographer(data, target) {
         else {
             console.log('bad photographer id');
         }
-
-
-
     }
 }
 
