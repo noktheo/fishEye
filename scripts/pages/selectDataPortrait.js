@@ -420,7 +420,7 @@ async function writeElementMediaP() {
 
 
                 //create img / video
-                lightBoxMedia()
+                lightBoxMedia();
             })
 
             //box before media - event leftkey
@@ -442,7 +442,7 @@ async function writeElementMediaP() {
 
 
                     //create img / video
-                    lightBoxMedia()
+                    lightBoxMedia();
 
                 }
             });
@@ -486,7 +486,7 @@ async function writeElementMediaP() {
 
 
             }
-            lightBoxMedia()
+            lightBoxMedia();
 
 
             //box before media
@@ -513,7 +513,7 @@ async function writeElementMediaP() {
                 elementTitle.remove();
 
                 //create img / video
-                lightBoxMedia()
+                lightBoxMedia();
             })
 
             //arrow after media - event rightkey
@@ -532,7 +532,7 @@ async function writeElementMediaP() {
                     const elementTitle = document.querySelector(".titleMediaLightbox");
                     elementTitle.remove();
 
-                    lightBoxMedia()
+                    lightBoxMedia();
 
                 }
             });

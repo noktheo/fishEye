@@ -89,9 +89,10 @@
     }
 }
 
-.ParentBoxMedia:hover {
+.ParentBoxMedia:hover, .ParentBoxMedia:focus-visible {
     background-color: var(--colorBackgroundColorEntreprise);
     cursor: pointer;
+    outline: none;
 }
 
 
@@ -114,7 +115,7 @@
 }
 
 
-.ParentBoxMedia:hover .mediaP {
+.ParentBoxMedia:hover .mediaP, .ParentBoxMedia:focus-visible .mediaP {
     transition-duration: var(--modalDurationFast);
     transform: scale(1.2);
 }
@@ -200,80 +201,4 @@
 .priceDay{
     position: absolute;
     right: 10px;
-}
-
-/**filter*************************/
-/**box content filter + triée par*/
-.collectionPhotographerheader {
-    width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
-    display: flex;
-    align-items: center;
-    margin: 30px 0 15px 0;
-}
-
-/*filter*/
-/* Styles du conteneur */
-.select-container {
-    position: relative;
-    display: inline-block;
-}
-
-/* Réinitialisez les styles du select */
-select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    outline: none;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    padding-right: 25px;
-    /* Espace pour l'icône */
-}
-
-.select-container {
-    background-color: var(--colorEntrepriseUp);
-    border-radius: 5px;
-    display: flex;
-    flex-wrap: nowrap;
-}
-
-label {
-    font-size: var(--fontSizeCoreUp);
-    color: var(--colorNeutralDown);
-    margin-right: 20px;
-}
-
-.iconFilter {
-    background-image: url(../assets/icons/icon_arrow_filter_black.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-/* Ajoutez vos propres styles */
-.custom-select {
-    font-size: 16px;
-    color: var(--colorNeutralSwap);
-    border-radius: 5px;
-    height: 50px;
-    padding: 10px 20px;
-    width: 150px;
-}
-
-.custom-select option {
-    border-bottom: 2px solid var(--colorNeutralSwap);
-    background-color: var(--colorEntrepriseUp);
-}
-
-/* Style pour l'option par défaut */
-select.custom-select>option:first-child {
-    display: none;
 }
