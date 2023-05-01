@@ -6,6 +6,9 @@ import { newCreateElement } from '../utils/createElement.js';
 //function get data
 import { getData } from '../utils/getData.js';
 
+//function navigation on lightbox
+import { lightboxNavigationReturn, lightboxNavigationNext } from '../utils/lightboxNavigation.js';
+
 /************target***********/
 //target avatar
 const target = document.querySelector('.photographe');
@@ -380,8 +383,6 @@ async function writeElementMediaP() {
             let compteurMedia = i;
             console.log(compteurMedia);
 
-
-
             //create box content
             newCreateElement('section', targetLightBox, { class: "boxLightBox" });
             let targetContentMediaLightBox = document.querySelector(".boxLightBox");
@@ -389,17 +390,19 @@ async function writeElementMediaP() {
             //create icon close lightbox
             let closeIconLightbox = document.createElement('div');
             closeIconLightbox.className = "closeIconLightbox";
+            closeIconLightbox.tabIndex = 0;
             closeIconLightbox.addEventListener('click', closeLightbox);
             targetContentMediaLightBox.appendChild(closeIconLightbox);
 
 
 
-            //box before media
+            //box before media - event click
             let beforeMedia = document.createElement('div');
             beforeMedia.className = "changeMedia arrowReturn";
-
+            beforeMedia.tabIndex = 0;
 
             targetContentMediaLightBox.appendChild(beforeMedia);
+
             beforeMedia.addEventListener('click', () => {
                 compteurMedia--;
                 console.log(compteurMedia);
@@ -420,6 +423,29 @@ async function writeElementMediaP() {
                 lightBoxMedia()
             })
 
+            //box before media - event leftkey
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'ArrowLeft' || event.keyCode === 37) { // Vérifie si la touche enfoncée est la touche de droite
+                    compteurMedia--;
+                    console.log(compteurMedia);
+                    if (compteurMedia < 0) {
+                        compteurMedia = dataz.length - 1;
+                    }
+
+                    //remove media
+                    const element = document.querySelector(".pictureLightbox");
+                    element.remove();
+
+                    //remove title
+                    const elementTitle = document.querySelector(".titleMediaLightbox");
+                    elementTitle.remove();
+
+
+                    //create img / video
+                    lightBoxMedia()
+
+                }
+            });
 
 
             //box img
@@ -432,7 +458,6 @@ async function writeElementMediaP() {
             let targetMediaLightBox = document.querySelector(".contentMediaLigtBox");
 
             function lightBoxMedia() {
-                console.log(compteurMedia);
 
                 //img or video
                 if (dataz[compteurMedia].image) {
@@ -467,9 +492,11 @@ async function writeElementMediaP() {
             //box before media
             let afterMedia = document.createElement('div');
             afterMedia.className = "changeMedia arrowNext";
+            afterMedia.tabIndex = 0;
 
-            //box event next img (media)
             targetContentMediaLightBox.appendChild(afterMedia);
+
+
             afterMedia.addEventListener('click', () => {
                 compteurMedia++;
                 console.log(compteurMedia);
@@ -488,6 +515,28 @@ async function writeElementMediaP() {
                 //create img / video
                 lightBoxMedia()
             })
+
+            //arrow after media - event rightkey
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'ArrowRight' || event.keyCode === 39) { // Vérifie si la touche enfoncée est la touche de droite
+                    compteurMedia++;
+                    console.log(compteurMedia);
+                    if (compteurMedia >= dataz.length) {
+                        compteurMedia = 0;
+                    }
+                    //remove media
+                    const element = document.querySelector(".pictureLightbox");
+                    element.remove();
+
+                    //remove title
+                    const elementTitle = document.querySelector(".titleMediaLightbox");
+                    elementTitle.remove();
+
+                    lightBoxMedia()
+
+                }
+            });
+
         }
 
     }

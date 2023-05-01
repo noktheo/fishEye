@@ -100,6 +100,6 @@ form label {
 
 /**message error*/
 
-#error{
+.error{
     color: var(--colorEntrepriseUp);
 }
