@@ -5,12 +5,11 @@ export function photographerFactory(data) {
 
     function getUserCardDOM(id, count) {
         //compteur tabindex +1
-        count++
 
         /*box photographers*/
         const article = document.createElement('article');
-        article.tabIndex = count;
-        console.log(count);
+        article.tabIndex = 0;
+
         
         article.addEventListener('click', (e) => {
             e.preventDefault();
