@@ -233,12 +233,12 @@ async function Photographer(data, target) {
 
         if (idP == idPhotographer) {
             const avatar = `assets/photographers/${data.photographers[i].portrait}`;
-            newCreateElement('img', target, { src: avatar, alt: "portrait of " + data.photographers[i].name ,tabIndex: 0});
+            newCreateElement('img', target, { src: avatar, alt: "portrait of " + data.photographers[i].name, tabIndex: 0 });
             numberPhoto.push(i);
 
-            newCreateElement("h1", headerBoxInfoP, { textContent: data.photographers[i].name, class: "nameP", tabIndex:0,tabIndex:0 });
-            newCreateElement("p", headerBoxInfoP, { textContent: data.photographers[i].country, class: "locationP",tabIndex:0,['aria-label']:' localisation :' + data.photographers[i].country });
-            newCreateElement("p", headerBoxInfoP, { textContent: data.photographers[i].tagline, class: "descriptionP",tabIndex:0 });
+            newCreateElement("h1", headerBoxInfoP, { textContent: data.photographers[i].name, class: "nameP", tabIndex: 0, tabIndex: 0 });
+            newCreateElement("p", headerBoxInfoP, { textContent: data.photographers[i].country, class: "locationP", tabIndex: 0, ['aria-label']: ' localisation :' + data.photographers[i].country });
+            newCreateElement("p", headerBoxInfoP, { textContent: data.photographers[i].tagline, class: "descriptionP", tabIndex: 0 });
         }
         else {
             console.log('bad photographer id');
@@ -280,9 +280,9 @@ async function writeElementMediaP() {
     }
 
     //create total like
-    newCreateElement('p', targetFollower, { textContent: arraylikes(totalLike), tabIndex:0 ,class: 'totalLikes',['aria-label']: 'nombre total de likes' });
+    newCreateElement('p', targetFollower, { textContent: arraylikes(totalLike), tabIndex: 0, class: 'totalLikes', ['aria-label']: 'nombre total de likes' });
     newCreateElement('div', targetFollower, { class: 'iconTotalLikes' });
-    newCreateElement('p', targetFollower, { class: "priceDay", tabIndex:0 ,textContent: "300€/ jour", ["aria-label"]:"prix d'embauche à la journée" });
+    newCreateElement('p', targetFollower, { class: "priceDay", tabIndex: 0, textContent: "300€/ jour", ["aria-label"]: "prix d'embauche à la journée" });
 
 
     //write multi element
@@ -333,7 +333,7 @@ async function writeElementMediaP() {
         target003.appendChild(boxMediaInfo);
 
         //title
-        newCreateElement('p', boxMediaInfo, { textContent: getData.title, class: "titleMedia", tabIndex: 0, ["aria-label"]: "nom de la photographie " + getData.title});
+        newCreateElement('p', boxMediaInfo, { textContent: getData.title, class: "titleMedia", tabIndex: 0, ["aria-label"]: "nom de la photographie " + getData.title });
 
         //box likes icon + number
         let boxMediaInfoLikes = document.createElement('div');
@@ -342,7 +342,7 @@ async function writeElementMediaP() {
         boxMediaInfo.appendChild(boxMediaInfoLikes);
 
         //total likes
-        newCreateElement('p', boxMediaInfoLikes, { textContent: getData.likes, class: "LikesPicture", tabIndex : 0, ["aria-label"]: getData.likes + " likes" });
+        newCreateElement('p', boxMediaInfoLikes, { textContent: getData.likes, class: "LikesPicture", tabIndex: 0, ["aria-label"]: getData.likes + " likes" });
 
 
         //icon like
@@ -353,23 +353,47 @@ async function writeElementMediaP() {
         const accountTotal = document.querySelector('.totalLikes');
 
         iconLikes.setAttribute('class', 'iconLikes');
-        iconLikes.setAttribute('aria-label','icon coeur pour ajouter ou annuler un like');
+        iconLikes.setAttribute('aria-label', 'icon coeur pour ajouter ou annuler un like');
         iconLikes.tabIndex = 0;
 
+        // Variable pour suivre l'état actuel
+        let isLiked = false;
+        
         iconLikes.addEventListener("click", function () {
-            //add -1 -> likesPicture 
-            const r = parseInt(likesTotal.textContent) + 1;
-            likesTotal.innerHTML = r;
 
-            //add +1 -> likesTotal
-            console.log(accountTotal)
-            const y = parseInt(accountTotal.textContent) + 1;
-            accountTotal.innerHTML = y;
+            if (isLiked) {
+                // Enlevez -1 de likesPicture
+                const r = parseInt(likesTotal.textContent) - 1;
+                likesTotal.innerHTML = r;
+
+
+                //add +1 -> likesTotal 
+                const y = parseInt(accountTotal.textContent) - 1;
+                accountTotal.innerHTML = y;
+
+                // Mettez à jour aria-label
+                iconLikes.setAttribute('aria-label', 'Total des j\'aime : ' + r);
+            }
+            else {
+                // Ajoutez +1 à likesPicture
+                const r = parseInt(likesTotal.textContent) + 1;
+                likesTotal.innerHTML = r;
+
+                //add +1 -> likesTotal 
+                const y = parseInt(accountTotal.textContent) + 1;
+                accountTotal.innerHTML = y;
+
+                // Mettez à jour aria-label
+                iconLikes.setAttribute('aria-label', 'Total des j\'aime : ' + r);
+            }
+
+            // Inversez l'état
+            isLiked = !isLiked;
         });
         boxMediaInfoLikes.appendChild(iconLikes);
 
 
-
+        //close lightbox
         function closeLightbox() {
             const lightbox = document.querySelector(".boxLightBox");
             lightbox.remove();
@@ -424,7 +448,7 @@ async function writeElementMediaP() {
             let beforeMedia = document.createElement('div');
             beforeMedia.className = "changeMedia arrowReturn";
             beforeMedia.tabIndex = 0;
-            beforeMedia.setAttribute('aria-label',"media précedent");
+            beforeMedia.setAttribute('aria-label', "media précedent");
 
             targetContentMediaLightBox.appendChild(beforeMedia);
 
