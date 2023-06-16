@@ -233,12 +233,12 @@ async function Photographer(data, target) {
 
         if (idP == idPhotographer) {
             const avatar = `assets/photographers/${data.photographers[i].portrait}`;
-            newCreateElement('img', target, { src: avatar, alt: "portrait of " + data.photographers[i].name });
+            newCreateElement('img', target, { src: avatar, alt: "portrait of " + data.photographers[i].name ,tabIndex: 0});
             numberPhoto.push(i);
 
-            newCreateElement("h1", headerBoxInfoP, { textContent: data.photographers[i].name, class: "nameP" });
-            newCreateElement("p", headerBoxInfoP, { textContent: data.photographers[i].country, class: "locationP" });
-            newCreateElement("p", headerBoxInfoP, { textContent: data.photographers[i].tagline, class: "descriptionP" });
+            newCreateElement("h1", headerBoxInfoP, { textContent: data.photographers[i].name, class: "nameP", tabIndex:0,tabIndex:0 });
+            newCreateElement("p", headerBoxInfoP, { textContent: data.photographers[i].country, class: "locationP",tabIndex:0,['aria-label']:' localisation :' + data.photographers[i].country });
+            newCreateElement("p", headerBoxInfoP, { textContent: data.photographers[i].tagline, class: "descriptionP",tabIndex:0 });
         }
         else {
             console.log('bad photographer id');
@@ -280,9 +280,9 @@ async function writeElementMediaP() {
     }
 
     //create total like
-    newCreateElement('p', targetFollower, { textContent: arraylikes(totalLike), class: 'totalLikes' });
+    newCreateElement('p', targetFollower, { textContent: arraylikes(totalLike), tabIndex:0 ,class: 'totalLikes',['aria-label']: 'nombre total de likes' });
     newCreateElement('div', targetFollower, { class: 'iconTotalLikes' });
-    newCreateElement('p', targetFollower, { class: "priceDay", textContent: "300€/ jour" });
+    newCreateElement('p', targetFollower, { class: "priceDay", tabIndex:0 ,textContent: "300€/ jour", ["aria-label"]:"prix d'embauche à la journée" });
 
 
     //write multi element
@@ -300,6 +300,7 @@ async function writeElementMediaP() {
         let ParentBoxMedia = document.createElement('article');
         ParentBoxMedia.setAttribute('class', 'ParentBoxMedia');
         ParentBoxMedia.tabIndex = 0;
+        ParentBoxMedia.setAttribute("aria-label", "Photographie nomée " + getData.title);
         let target002 = document.querySelector('.collectionPhotographer');
         target002.appendChild(ParentBoxMedia);
 
@@ -332,15 +333,16 @@ async function writeElementMediaP() {
         target003.appendChild(boxMediaInfo);
 
         //title
-        newCreateElement('p', boxMediaInfo, { textContent: getData.title, class: "titleMedia" });
+        newCreateElement('p', boxMediaInfo, { textContent: getData.title, class: "titleMedia", tabIndex: 0, ["aria-label"]: "nom de la photographie " + getData.title});
 
         //box likes icon + number
         let boxMediaInfoLikes = document.createElement('div');
         boxMediaInfoLikes.setAttribute('class', 'boxMediaInfoLikes');
+        boxMediaInfoLikes.setAttribute("aria-label", getData.likes + " total de likes sur la photographie");
         boxMediaInfo.appendChild(boxMediaInfoLikes);
 
         //total likes
-        newCreateElement('p', boxMediaInfoLikes, { textContent: getData.likes, class: "LikesPicture", tabIndex : 0 });
+        newCreateElement('p', boxMediaInfoLikes, { textContent: getData.likes, class: "LikesPicture", tabIndex : 0, ["aria-label"]: getData.likes + " likes" });
 
 
         //icon like
@@ -351,6 +353,8 @@ async function writeElementMediaP() {
         const accountTotal = document.querySelector('.totalLikes');
 
         iconLikes.setAttribute('class', 'iconLikes');
+        iconLikes.setAttribute('aria-label','icon coeur pour ajouter ou annuler un like');
+        iconLikes.tabIndex = 0;
 
         iconLikes.addEventListener("click", function () {
             //add -1 -> likesPicture 
@@ -409,6 +413,7 @@ async function writeElementMediaP() {
             //create icon close lightbox
             let closeIconLightbox = document.createElement('div');
             closeIconLightbox.className = "closeIconLightbox";
+            closeIconLightbox.setAttribute('aria-label', "fermer lightbox");
             closeIconLightbox.tabIndex = 0;
             closeIconLightbox.addEventListener('click', closeLightbox);
             targetContentMediaLightBox.appendChild(closeIconLightbox);
@@ -419,6 +424,7 @@ async function writeElementMediaP() {
             let beforeMedia = document.createElement('div');
             beforeMedia.className = "changeMedia arrowReturn";
             beforeMedia.tabIndex = 0;
+            beforeMedia.setAttribute('aria-label',"media précedent");
 
             targetContentMediaLightBox.appendChild(beforeMedia);
 
@@ -483,7 +489,7 @@ async function writeElementMediaP() {
                     let mediaLightBox = document.createElement('img');
                     mediaLightBox.className = "pictureLightbox";
                     mediaLightBox.tabIndex = 0;
-                    mediaLightBox.setAttribute("alt", "picture : " + dataz[compteurMedia].title);
+                    mediaLightBox.setAttribute("alt", "image nommée : " + dataz[compteurMedia].title);
 
                     console.log('dataz[compteurMedia]');
                     console.log(dataz[compteurMedia]);
@@ -496,7 +502,7 @@ async function writeElementMediaP() {
                     let mediaLightBox = document.createElement('video');
                     mediaLightBox.className = "pictureLightbox";
                     mediaLightBox.tabIndex = 0;
-                    mediaLightBox.setAttribute("alt", "video : " + dataz[compteurMedia].title);
+                    mediaLightBox.setAttribute("alt", "video nommée : " + dataz[compteurMedia].title);
 
                     mediaLightBox.src = `assets/photographers/${nameAlone}/${dataz[compteurMedia].video}`;
                     console.log(`assets/photographers/${nameAlone}/${dataz[compteurMedia].video}`);
@@ -518,6 +524,7 @@ async function writeElementMediaP() {
             let afterMedia = document.createElement('div');
             afterMedia.className = "changeMedia arrowNext";
             afterMedia.tabIndex = 0;
+            afterMedia.setAttribute('aria-label', "media suivant");
 
             targetContentMediaLightBox.appendChild(afterMedia);
 
